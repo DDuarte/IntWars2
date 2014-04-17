@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "stdafx.h"
 #include "PacketHandler.h"
+#include "NetworkListener.h"
 
 bool PacketHandler::handleNull(HANDLE_ARGS)
 {
@@ -54,13 +55,16 @@ bool PacketHandler::handleKeyCheck(ENetPeer *peer, ENetPacket *packet)
 	KeyCheck response;
 	response.userId = keyCheck->userId;
 	
-	return sendPacket(peer, reinterpret_cast<uint8*>(&response), sizeof(KeyCheck), CHL_HANDSHAKE);
+	bool bRet = sendPacket(peer, reinterpret_cast<uint8*>(&response), sizeof(KeyCheck), CHL_HANDSHAKE);
+	handleGameNumber(peer, NULL);//Send 0x91 Packet?
+	return bRet;
 }
 
 bool PacketHandler::handleGameNumber(ENetPeer *peer, ENetPacket *packet)
 {
 	WorldSendGameNumber world;
 	world.gameId = 1;
+	strcpy((char*)world.data1, "EUW1");
 	memcpy(world.data, peerInfo(peer)->name, peerInfo(peer)->nameLen);
 
 	return sendPacket(peer, reinterpret_cast<uint8*>(&world), sizeof(WorldSendGameNumber), CHL_S2C);
@@ -113,17 +117,87 @@ bool PacketHandler::handleMap(ENetPeer *peer, ENetPacket *packet)
 //building the map
 bool PacketHandler::handleSpawn(ENetPeer *peer, ENetPacket *packet)
 {
+	StatePacket2 start(PKT_S2C_StartSpawn);
+	bool p1 = sendPacket(peer, reinterpret_cast<uint8*>(&start), sizeof(StatePacket2), CHL_S2C);
+
+	printf("Spawning map\r\n");
+
 	HeroSpawn spawn;
 	spawn.netId = peerInfo(peer)->netId; 
 	spawn.gameId = 0;
 	memcpy(spawn.name, peerInfo(peer)->name, peerInfo(peer)->nameLen);
 	memcpy(spawn.type, peerInfo(peer)->type, peerInfo(peer)->typeLen);
+	bool p2 = sendPacket(peer, reinterpret_cast<uint8*>(&spawn), sizeof(HeroSpawn), CHL_S2C);
+
+	HeroSpawn2 h2;
+	h2.header.netId = peerInfo(peer)->netId;
+	sendPacket(peer, reinterpret_cast<uint8*>(&h2), sizeof(HeroSpawn2), CHL_S2C);
+	HeroSpawn3 h3;
+	h3.header.netId = peerInfo(peer)->netId;
+	sendPacket(peer, reinterpret_cast<uint8*>(&h3), sizeof(HeroSpawn3), CHL_S2C);
+
+	//Spawn Turrets
+	char* szTurrets[24] = {
+		"@@Turret_T1_R_03_A",
+		"@@Turret_T1_R_02_A",
+		"@@Turret_T1_C_07_A",
+		"@@Turret_T2_R_03_A",
+		"@@Turret_T2_R_02_A",
+		"@@Turret_T2_R_01_A",
+		"@@Turret_T1_C_05_A",
+		"@@Turret_T1_C_04_A",
+		"@@Turret_T1_C_03_A",
+		"@@Turret_T1_C_01_A",
+		"@@Turret_T1_C_02_A",
+		"@@Turret_T2_C_05_A",
+		"@@Turret_T2_C_04_A",
+		"@@Turret_T2_C_03_A",
+		"@@Turret_T1_C_02_A",
+		"@@Turret_T2_C_02_A",
+		"@@Turret_OrderTurretShine_A",
+		"@@Turret_ChaosTurretShine_A",
+		"@@Turret_T1_L_03_A",
+		"@@Turret_T1_L_02_A",
+		"@@Turret_T1_C_06_A",
+		"@@Turret_T2_L_03_A",
+		"@@Turret_T2_L_02_A",
+		"@@Turret_T2_L_01_A"
+	};
+	for (UINT i = 0; i < 24; i++) {
+		TurretSpawn turretSpawn;
+		turretSpawn.tID = i + 1;
+		strcpy((char*)turretSpawn.name, szTurrets[i]);
+
+		sendPacket(peer, reinterpret_cast<uint8*>(&turretSpawn), sizeof(TurretSpawn), CHL_S2C);
+	}
+
+	//Spawn Props
+	LevelPropSpawn lpSpawn;
+
+	lpSpawn.SetProp("LevelProp_Yonkey", "Yonkey");
+	lpSpawn.netId = GetNewNetID();
+	lpSpawn.x = 12465; lpSpawn.y = 101;
+	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
+
+	lpSpawn.SetProp("LevelProp_Yonkey1", "Yonkey");
+	lpSpawn.netId = GetNewNetID();
+	lpSpawn.x = -76; lpSpawn.y = 94;
+	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
+
+	lpSpawn.SetProp("LevelProp_ShopMale", "ShopMale");
+	lpSpawn.netId = GetNewNetID();
+	lpSpawn.x = 13374; lpSpawn.y = 194;
+	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
+
+	lpSpawn.SetProp("LevelProp_ShopMale1", "ShopMale");
+	lpSpawn.netId = GetNewNetID();
+	lpSpawn.x = -99; lpSpawn.y = 191;
+	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
+
 
 	StatePacket end(PKT_S2C_EndSpawn);
-
-	bool p1 = sendPacket(peer, reinterpret_cast<uint8*>(&spawn), sizeof(HeroSpawn), CHL_S2C);
-	bool p2 = sendPacket(peer, reinterpret_cast<uint8*>(&end), sizeof(StatePacket), CHL_S2C);
-	return p1 & p2;
+	bool p3 = sendPacket(peer, reinterpret_cast<uint8*>(&end), sizeof(StatePacket), CHL_S2C);
+	return p1 & p2 & p3;
 }
 
 bool PacketHandler::handleStartGame(HANDLE_ARGS)
@@ -164,7 +238,7 @@ bool PacketHandler::handleView(ENetPeer *peer, ENetPacket *packet)
 {
 	ViewReq *request = reinterpret_cast<ViewReq*>(packet->data);
 
-	Logging->writeLine("View (%i), x:%f, y:%f, zoom: %f\n", request->requestNo, request->x, request->y, request->zoom);
+	//Logging->writeLine("View (%i), x:%f, y:%f, zoom: %f\n", request->requestNo, request->x, request->y, request->zoom);
 
 	ViewAns answer;
 	answer.requestNo = request->requestNo;
@@ -198,8 +272,8 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 	}
 
 	Logging->writeLine("Move to(normal): x:%f, y:%f, z: %f, type: %i, vectorNo: %i\n", request->x, request->y, request->z, request->type, request->vectorNo);
-	for(int i = 0; i < request->vectorNo; i++)
-		printf("     Vector %i, x: %i, y: %i\n", i, request->getVector(i)->x, request->getVector(i)->y);
+	/*for(int i = 0; i < request->vectorNo; i++)
+		printf("     Vector %i, x: %i, y: %i\n", i, request->getVector(i)->x, request->getVector(i)->y);*/
 
 	MovementAns *answer = MovementAns::create(request->vectorNo, request->hasDelta());
 	answer->ok = 1;
@@ -225,7 +299,13 @@ bool PacketHandler::handleLoadPing(ENetPeer *peer, ENetPacket *packet)
 
 
 	Logging->writeLine("loaded: %f, ping: %f, %i, %f\n", loadInfo->loaded, loadInfo->ping, loadInfo->unk4, loadInfo->f3);
-	return broadcastPacket(reinterpret_cast<uint8*>(&response), sizeof(PingLoadInfo), 4, UNRELIABLE);
+	bool bRet = broadcastPacket(reinterpret_cast<uint8*>(&response), sizeof(PingLoadInfo), 4, UNRELIABLE);
+	static bool bLoad = false;
+	if (!bLoad) {
+		handleMap(peer, NULL);
+		bLoad = true;
+	}
+	return bRet;
 }
 
 bool PacketHandler::handleQueryStatus(HANDLE_ARGS)

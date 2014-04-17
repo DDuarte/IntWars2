@@ -42,5 +42,7 @@ class NetworkListener
 		BlowFish *_blowfish;
 };
 
+extern uint32 GetNewNetID();
+
 #endif
 

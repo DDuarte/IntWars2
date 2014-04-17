@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Log.h"
 
 #define SERVER_HOST ENET_HOST_ANY 
-#define SERVER_PORT 5109
+#define SERVER_PORT 5119
 #define SERVER_KEY "17BLOhi6KZsTtldTsizvHg=="
 
 #define SERVER_VERSION "0.0.2"

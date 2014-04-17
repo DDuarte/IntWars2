@@ -19,6 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "NetworkListener.h"
 #include "Log.h"
 
+uint32 GetNewNetID() {
+	static DWORD dwStart = 0x40000019;
+	DWORD dwRet = dwStart;
+	dwStart++;
+	return dwRet;
+}
+
 NetworkListener::NetworkListener()
 {
 
@@ -67,10 +74,10 @@ void NetworkListener::netLoop()
 				event.peer->mtu = PEER_MTU;
 
 				event.peer->data = new ClientInfo();
-				peerInfo(event.peer)->setName("IntWars");
-				peerInfo(event.peer)->setType("Jayce");
+				peerInfo(event.peer)->setName("RipWars");
+				peerInfo(event.peer)->setType("Draven");
 				peerInfo(event.peer)->skinNo = 1;
-				peerInfo(event.peer)->netId = 0x40000019;
+				peerInfo(event.peer)->netId = GetNewNetID();
 
 			break;
 

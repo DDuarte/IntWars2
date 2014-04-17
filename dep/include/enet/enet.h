@@ -319,7 +319,7 @@ typedef struct _ENetHost
    ENetList             dispatchQueue;
    int                  continueSending;
    size_t               packetSize;
-   enet_uint16          headerFlags;
+   enet_uint8          headerFlags;
    ENetProtocol         commands [ENET_PROTOCOL_MAXIMUM_PACKET_COMMANDS];
    size_t               commandCount;
    ENetBuffer           buffers [ENET_BUFFER_MAXIMUM];

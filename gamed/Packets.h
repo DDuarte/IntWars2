@@ -90,7 +90,7 @@ typedef struct _SynchVersionAns
 	{
 		header.cmd = PKT_S2C_SynchVersion;
 		ok = ok2 = 1;
-		memcpy(version, "Version 1.0.0.141 [PUBLIC]", 27);
+		memcpy(version, "Version 4.5.0.264 [PUBLIC]", 27);
 		memcpy(gameMode, "CLASSIC", 8);
 		memset(zero, 0, 2232);
 		end1 = 0xE2E0;
@@ -134,10 +134,9 @@ typedef struct _LoadScreenInfo
 		blueMax = redMax = 6;		
 	}
 
-	uint32 cmd;
+	uint8 cmd;
 	uint32 blueMax;
 	uint32 redMax;
-	uint32 unk3;
 	uint64 bluePlayerIds[6]; //Team 1, 6 players max
 	uint8 blueData[144];
 	uint64 redPlayersIds[6]; //Team 2, 6 players max
@@ -159,7 +158,7 @@ typedef struct _LoadScreenPlayer
 		_LoadScreenPlayer *packet = (_LoadScreenPlayer *)buf;
 		packet->cmd = cmd;
 		packet->length = size;
-		packet->unk2 = 0xA;
+		packet->userId = 0;
 		packet->skinId = 0;
 		memcpy(packet->getDescription(), str, packet->length);
 		return packet;
@@ -170,8 +169,7 @@ typedef struct _LoadScreenPlayer
 		delete [](uint8*)packet;
 	}
 
-	uint32 cmd;
-	uint32 unk2;
+	uint8 cmd;
 	uint64 userId;
 	uint32 skinId;
 	uint32 length;
@@ -396,13 +394,16 @@ typedef struct _WorldSendGameNumber
 	_WorldSendGameNumber()
 	{
 		header.cmd = PKT_World_SendGameNumber;
+		memset(data, 0, sizeof(data1));
 		memset(data, 0, sizeof(data));
 		gameId = 0;
 	}
 
 	PacketHeader header;
-	uint64 gameId;
-	uint8 data[0x80];
+	uint64 gameId; //_0x0000
+	uint8 server[5]; //0x0008
+	uint8 data1[27]; //0x000D
+	uint8 data[0x80];//0x0028
 } WorldSendGameNumber;
 
 
@@ -561,6 +562,16 @@ typedef struct _StatePacket
 	}
 	PacketHeader header;
 } StatePacket;
+typedef struct _StatePacket2
+{
+	_StatePacket2(PacketCmd state)
+	{
+		header.cmd = state;
+		nUnk = 0;
+	}
+	PacketHeader header;
+	int16 nUnk;
+} StatePacket2;
 
 struct FogUpdate2
 {
@@ -582,7 +593,7 @@ struct HeroSpawn
 	{
 		header.cmd = PKT_S2C_HeroSpawn;
 		unk1 = 0;
-		memset(&name, 0, 128+40); //Set name + type to zero
+		memset(&name, 0, 128+64); //Set name + type to zero
 
 		x = 130880;
 		y = 502;
@@ -595,8 +606,92 @@ struct HeroSpawn
 	uint32 y;
 	uint16 unk1;
 	uint8 name[128];
-	uint8 type[40];
+	uint8 type[64];
 } ;
+struct HeroSpawn2 {
+	HeroSpawn2() {
+		header.cmd = (PacketCmd)0xB9;
+		ZeroMemory(unk, 30);
+		unk[15] = 0x80;
+		unk[16] = 0x3F;
+		unk1 = 3;
+		unk2 = 1;
+		f1 = 0x420F9C78;
+		f2 = 0x4388C6A5;
+		f3 = 0x3F441B7D;
+		f4 = 0x3F248DBB;
+	}
+
+	PacketHeader header;
+	uint8 unk[30];
+	uint8 unk1;
+	uint32 unk2;
+	DWORD f1;
+	DWORD f2;
+	DWORD f3;
+	DWORD f4;
+};
+struct HeroSpawn3 {
+	HeroSpawn3() {
+		header.cmd = (PacketCmd)0xAD;
+		unk = 0;
+		x = 561;
+		y = 561;
+	}
+
+	PacketHeader header;
+	uint16 unk;
+	float x;
+	float y;
+};
+
+struct TurretSpawn
+{
+	TurretSpawn()
+	{
+		header.cmd = PKT_S2C_TurretSpawn;
+		tID = 0;
+		unk = 0;
+		memset(&name, 0, 29 + 42); //Set name + type to zero
+
+	}
+
+	PacketHeader header;
+	uint8 tID;
+	uint16 unk;
+	uint8 name[29];
+	uint8 type[42];
+};
+class LevelPropSpawn
+{
+public:
+	LevelPropSpawn()
+	{
+		header.cmd = PKT_S2C_LevelPropSpawn;
+		netId = 0;
+		memset(&unk, 0, 50 + 64 + 64); //Set name + type to zero
+	}
+	void SetProp(char* szName, char* szType) {
+		header.cmd = PKT_S2C_LevelPropSpawn;
+		netId = 0;
+		x = 0;
+		y = 0;
+		memset(&unk, 0, 50);
+		memset(&name, 0, 64);
+		memset(&type, 0, 64);
+		if (szName)
+			strcpy((char*)name, szName);
+		if (szType)
+			strcpy((char*)type, szType);
+	}
+	PacketHeader header;
+	uint32 netId;
+	float x;
+	float y;
+	uint8 unk[50];
+	uint8 name[64];
+	uint8 type[64];
+};
 
 struct Announce
 {
