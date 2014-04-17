@@ -4,7 +4,7 @@ About
 ------
 This is the development part of the [HeroWars](https://github.com/Intline9/HeroWars)  project. Here we can try everything out without worrying with the code base.
 
-Members
+Old Members - No commit for 2 years
 -------
 * Intline9 - intline9(at)gmail(dot)com
 * Ltsstar
@@ -24,4 +24,8 @@ Want to join? Contact us and show us some work.
 
 Contact
 -------
-We are at irc.freenode.net#HeroWars
+~~We are at irc.freenode.net#HeroWars~~ (Dead)
+
+Notes
+-------
+I updated this project on my free time, so anyone who cares can fidle with it at the latest game version.
