@@ -4,6 +4,10 @@ About
 ------
 Fork of the 2 years old outdated project, emulates LoL server environment
 
+Content:
+* Load Screen: http://puu.sh/8cbhW.jpg
+* Ingame: http://puu.sh/8cbiX.jpg
+
 ~~This is the development part of the [HeroWars](https://github.com/Intline9/HeroWars)  project. Here we can try everything out without worrying with the code base.~~
 
 Old Members - No commit for 2 years
