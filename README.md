@@ -36,4 +36,4 @@ Contact
 
 Notes
 -------
-I updated this project on my free time, so anyone who cares can fidle with it at the latest game version.
+I updated this project on my free time, so anyone who cares can fiddle with it at the latest game version.
