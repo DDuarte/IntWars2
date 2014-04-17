@@ -1,8 +1,10 @@
-HeroWars
+RipWars
 ==================
 About
 ------
-This is the development part of the [HeroWars](https://github.com/Intline9/HeroWars)  project. Here we can try everything out without worrying with the code base.
+Fork of the 2 years old outdated project, emulates LoL server environment
+
+~~This is the development part of the [HeroWars](https://github.com/Intline9/HeroWars)  project. Here we can try everything out without worrying with the code base.~~
 
 Old Members - No commit for 2 years
 -------
@@ -20,7 +22,8 @@ GPLv3 as sharing is caring, and when ever you extend/use/modify/fix any of this 
 
 Contributing
 ------------
-Want to join? Contact us and show us some work.
+~~Want to join? Contact us and show us some work.~~
+Please fork and upload any progress.
 
 Contact
 -------
