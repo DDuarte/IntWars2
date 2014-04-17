@@ -23,6 +23,7 @@ GPLv3 as sharing is caring, and when ever you extend/use/modify/fix any of this 
 Contributing
 ------------
 ~~Want to join? Contact us and show us some work.~~
+
 Please fork and upload any progress.
 
 Contact
