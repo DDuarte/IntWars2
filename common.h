@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum GameCmd : uint8
 {
-	PKT_S2C_MoveAns                 = 0x67,
+	PKT_S2C_MoveAns                 = 0x60,
 };
 
 //Currently attuned to Live 4.5.0.264
@@ -36,16 +36,16 @@ enum PacketCmd : uint8
 	PKT_S2C_ViewAns = 0x2B, //3  //UPDATED
 	PKT_C2S_ViewReq = 0x2D, //1 //UPDATED
 	PKT_C2S_SkillUp = 0x38, //1 //UPDATED
-	PKT_S2C_AttentionPing = 0x3F, //? //UPDATED
-	PKT_S2C_Emotion = 0x41, //? UPDATED
-	PKT_C2S_Emotion = 0x4E,
+	PKT_S2C_AttentionPing = 0x3F, //3 //UPDATED
+	PKT_S2C_Emotion = 0x41, //3 UPDATED
+	PKT_C2S_Emotion = 0x47, //1 UPDATED
 	PKT_S2C_Announce = 0x4C, //3
-	PKT_S2C_HeroSpawn = 0x4B, //UPDATED
-	PKT_S2C_TurretSpawn = 0x9C, //UPDATED
-	PKT_S2C_LevelPropSpawn = 0xCF, //UPDATED
+	PKT_S2C_HeroSpawn = 0x4B, //3 UPDATED
+	PKT_S2C_TurretSpawn = 0x9C, //3 UPDATED
+	PKT_S2C_LevelPropSpawn = 0xCF, //3 UPDATED
 	PKT_C2S_StartGame = 0x51, //1 //UPDATED
 	PKT_S2C_SynchVersion = 0x53, //3 //UPDATED
-	PKT_C2S_AttentionPing = 0x56,
+	PKT_C2S_AttentionPing = 0x56, //1 //UPDATED
 	PKT_C2S_ScoreBord = 0x5C, //1
 	PKT_S2C_StartGame = 0x5B, //? //UPDATED 
 	PKT_C2S_OpenShop = 0x63, //1
@@ -53,7 +53,6 @@ enum PacketCmd : uint8
 	PKT_S2C_LoadHero = 0x65, //6 //UPDATED
 	PKT_S2C_LoadName = 0x66, //6 //UPDATED
 	PKT_S2C_LoadScreenInfo = 0x67, //6 //UPDATED
-	PKT_C2S_MoveAnswer = 0x60, //4 //UPDATED
 	PKT_C2S_MoveReq = 0x71, //1 //UPDATED
 	PKT_C2S_MoveConfirm = 0x7D, //1
 	PKT_C2S_ReqBuyItem = 0x82, //1 //UPDATED
@@ -64,12 +63,12 @@ enum PacketCmd : uint8
 	PKT_S2C_Ping_Load_Info = 0x94, //4 //UPDATED
 	PKT_C2S_GameNumberReq = 0xA6, //1
 	PKT_C2S_Surrender = 0xAE, //1
-	PKT_C2S_StatsConfirm = 0xB2, //1
+	PKT_C2S_StatsConfirm = 0xA7, //1 UPDATED
 	PKT_C2S_Click = 0xAE, //1 //UPDATED
 	PKT_S2C_FogUpdate2 = 0xC6, //3
 	PKT_C2S_SynchVersion = 0xBC, //1 //UPDATED
 	PKT_C2S_CharLoaded = 0xBD, //1 //UPDATED
-	PKT_S2C_CharStats = 0xD0, //4
+	PKT_S2C_CharStats = 0xC3, //4 //UPDATED
 	PKT_Batch = 0xFF, //3
 };
 

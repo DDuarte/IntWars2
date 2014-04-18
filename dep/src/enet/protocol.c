@@ -822,11 +822,12 @@ enet_protocol_handle_incoming_commands (ENetHost * host, ENetEvent * event)
 
     header = (ENetProtocolHeader *) host -> receivedData;
 
-    peerID = header -> peerID;
-    flags = peerID & ENET_PROTOCOL_HEADER_FLAG_MASK;
-    peerID &= ~ ENET_PROTOCOL_HEADER_FLAG_MASK;
+	peerID = header->peerID;
+	peerID = peerID - 0x29; //HARDCORE FIX?
 
-	if (peerID & 0x7F == ENET_PROTOCOL_MAXIMUM_PEER_ID)
+	flags = header->flag & ENET_PROTOCOL_HEADER_FLAG_MASK;
+
+	if (header->flag & 0x7F == ENET_PROTOCOL_MAXIMUM_PEER_ID)
       peer = NULL;
     else
     if (peerID >= host -> peerCount)
@@ -1412,8 +1413,8 @@ enet_protocol_send_outgoing_commands (ENetHost * host, ENetEvent * event, int ch
         }
 
         //header.checksum = currentPeer -> sessionID;
-		header.unk = 0x29; //HARDCODED
-        header.peerID = (currentPeer -> outgoingPeerID | host -> headerFlags);
+		header.peerID = currentPeer->outgoingPeerID + 0x29;
+		header.flag = host->headerFlags;
         
         host -> buffers -> data = & header;
         if (host -> headerFlags & ENET_PROTOCOL_HEADER_FLAG_SENT_TIME)

@@ -269,6 +269,14 @@ struct MovementVector
 {
 	uint16 x;
 	uint16 y;
+	MovementVector() {
+		x = 0;
+		y = 0;
+	}
+	MovementVector(uint16 x,uint16 y) {
+		this->x = x;
+		this->y = y;
+	}
 };
 
 struct MovementReq
@@ -277,7 +285,6 @@ struct MovementReq
 	MoveType type;
 	float x;
 	float y;
-	float z;
 	uint32 zero;
 	uint8 vectorNo;
 	uint32 netId;
@@ -325,7 +332,7 @@ struct MovementAns
 
 	bool hasDelta()
 	{
-		return (delta == 0);
+		return delta > 0;
 	}
 
 	static uint32 size(uint8 vectorNo, bool hasDelta = false)
@@ -338,11 +345,11 @@ struct MovementAns
 		return size(vectorNo, hasDelta());
 	}
 
-	static MovementAns *create(uint32 vectorNo, bool hasDelta = false)
+	static MovementAns *create(uint32 vectorNo, uint8 hasDelta = 0)
 	{
-		MovementAns *packet = (MovementAns*)new uint8[size(vectorNo)];
+		MovementAns *packet = (MovementAns*)new uint8[size(vectorNo,hasDelta)];
 		memset(packet, 0, size(vectorNo));
-		packet->delta = (hasDelta) ? 0 : 1;
+		packet->delta = hasDelta;
 		packet->header.cmd = PKT_S2C_MoveAns;
 		packet->header.ticks = clock();
 		packet->vectorNo = vectorNo;
@@ -712,11 +719,14 @@ typedef struct _SkillUpResponse
 	_SkillUpResponse()
 	{
 		header.cmd = PKT_S2C_SkillUp;
-		level = 0x0000;
+		skill = 0;
+		level = 0;
+		pointsLeft = 0;
 	}
 	PacketHeader header;
 	uint8 skill;
-	uint16 level; //?
+	uint8 level; //?
+	uint8 pointsLeft;
 
 
 } SkillUpResponse;

@@ -58,8 +58,8 @@ typedef enum _ENetProtocolFlag
 
 typedef struct _ENetProtocolHeader
 {
-   enet_uint8 unk;
    enet_uint8 peerID;
+   enet_uint8 flag;
    enet_uint16 sentTime;
 } ENET_PACKED ENetProtocolHeader;
 

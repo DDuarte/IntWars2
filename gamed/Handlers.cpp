@@ -256,6 +256,16 @@ bool PacketHandler::handleView(ENetPeer *peer, ENetPacket *packet)
 
 }
 
+#include <vector>
+int UnsignedToSigned(DWORD value, DWORD byteCount) {
+	float nPow = 2;
+	byteCount = (DWORD)pow(nPow, (int)(8 * byteCount));
+	if (value >= (byteCount / 2))
+		return value - byteCount;
+	else
+		return value;
+}
+
 bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 {
 	MovementReq *request = reinterpret_cast<MovementReq*>(packet->data);
@@ -271,21 +281,59 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 			return true;
 	}
 
-	Logging->writeLine("Move to(normal): x:%f, y:%f, z: %f, type: %i, vectorNo: %i\n", request->x, request->y, request->z, request->type, request->vectorNo);
-	/*for(int i = 0; i < request->vectorNo; i++)
-		printf("     Vector %i, x: %i, y: %i\n", i, request->getVector(i)->x, request->getVector(i)->y);*/
+	float vCount = request->vectorNo / 2;
 
-	MovementAns *answer = MovementAns::create(request->vectorNo, request->hasDelta());
+	LPBYTE lpBuffer = (LPBYTE)&request->delta;
+	UINT nPos = 0;
+
+	std::vector<BYTE> modifierBits;	// local modifierBits = {0, 0}
+	modifierBits.push_back(0);
+	modifierBits.push_back(0);
+
+	for (int i = 0; i < ceil((vCount - 1) / 4); i++)
+	{
+		BYTE bitMask = lpBuffer[nPos++];
+		for (int j = 1; j <= 8; j++)
+		{
+			modifierBits.push_back((bitMask & 1));	//table.insert(modifierBits, bit32.band(bitMask, 1))
+			bitMask = (bitMask >> 1);				//bitMask = bit32.rshift(bitMask, 1)
+		}
+	}
+	MovementVector lastCoord;
+	std::vector<MovementVector> vMoves;
+	for (int i = 0; i < vCount; i++) {
+		BYTE a = modifierBits[0];
+		modifierBits.erase(modifierBits.begin());	//if table.remove(modifierBits, 1) == 1 then
+		if (a == 1) {
+			lastCoord.x += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++],1);
+			lastCoord.y += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++],1);
+			vMoves.push_back(lastCoord);
+		}
+		else {
+			lastCoord.x = UnsignedToSigned(*(WORD*)&lpBuffer[nPos],2);
+			lastCoord.y = UnsignedToSigned(*(WORD*)&lpBuffer[nPos + 2],2);
+			nPos += 4;
+			vMoves.push_back(lastCoord);
+		}
+	}
+
+	Logging->writeLine("Move to(normal): x:%f, y:%f, type: %i, vectorNo: %i\n", request->x, request->y, request->type, vMoves.size());
+	for (int i = 0; i < vMoves.size(); i++)
+		printf("     Vector %i, x: %i, y: %i\n", i, vMoves[i].x, vMoves[i].y);
+
+	MovementAns *answer = MovementAns::create(request->vectorNo, request->delta);
 	answer->ok = 1;
 	answer->vectorNo = request->vectorNo;
 	answer->netId = peerInfo(peer)->netId;
-	for(int i = 0; i < request->vectorNo; i++)
+	for (int i = 0; i < vMoves.size(); i++)
 	{
-		answer->getVector(i)->x = request->getVector(i)->x;
-		answer->getVector(i)->y = request->getVector(i)->y;
+		answer->getVector(i)->x = vMoves[i].x;
+		answer->getVector(i)->y = vMoves[i].y;
 	}
 
-	return broadcastPacket(reinterpret_cast<uint8*>(answer), answer->size(), 4);
+	bool bRet = broadcastPacket(reinterpret_cast<uint8*>(answer), answer->size(), 4);
+	MovementAns::destroy(answer);
+	return bRet;
 }
 
 bool PacketHandler::handleLoadPing(ENetPeer *peer, ENetPacket *packet)
@@ -451,7 +499,8 @@ bool PacketHandler::handleSkillUp(HANDLE_ARGS) {
 	SkillUpResponse skillUpResponse;
 	
 	skillUpResponse.skill = skillUpPacket->skill;
-	skillUpResponse.level = 0x0001;
+	skillUpResponse.level = 1;
+	skillUpResponse.pointsLeft = 1;
 	
 	return sendPacket(peer, reinterpret_cast<uint8*>(&skillUpResponse),sizeof(skillUpResponse),CHL_GAMEPLAY);
 
