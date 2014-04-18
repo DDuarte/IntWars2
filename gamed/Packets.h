@@ -266,8 +266,8 @@ typedef struct _ViewReq
 
 struct MovementVector
 {
-	uint16 x;
-	uint16 y;
+	short x;
+	short y;
 	MovementVector() {
 		x = 0;
 		y = 0;

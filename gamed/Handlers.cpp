@@ -260,30 +260,43 @@ bool PacketHandler::handleView(ENetPeer *peer, ENetPacket *packet)
 
 }
 
+inline void SetBitmaskValue(byte mask[], int pos, bool val) {
+	if (val)
+		mask[pos / 8] |= 1 << (pos % 8);
+	else
+		mask[pos / 8] &= ~(1 << (pos % 8));
+}
 
+inline bool GetBitmaskValue(byte mask[], int pos) {
+	return ((1 << (pos % 8)) & mask[pos / 8]) != 0;
+}
 
 #include <vector>
 /*
-	Todo: move this to Packets.h and use in all Movement related Packets. 
-	Currently only absolute Waypoints are handled correctly in Packets.h
+	todo: move this to Packets.h and use in all Movement related Packets. 
+	Currently only absolute waypoints are handled correctly in Packets.h
 */
 std::vector<MovementVector> readWaypoints(byte* buffer, int vectorCount) { 
-	UINT nPos = vectorCount <= 2 ? 0 : ((vectorCount + 5) / 8); // equals ceil((float)request->vectorNo - 2.0f) / 8.0f)
+	UINT nPos = (vectorCount + 5) / 8;
 	MovementVector lastCoord;
 	std::vector<MovementVector> vMoves;
-	for (int c = -2; c < (vectorCount + 1) / 2 - 2; c++) {
-		bool isRelative = c >= 0 && (((1 << (c % 8)) & buffer[c / 8]) != 0); //check bit mask
-		if (isRelative) {
-			lastCoord.x += buffer[nPos++];
-			lastCoord.y += buffer[nPos++];
-		} else {
+	int bitMaskPos = 0;
+	for (int i = 0; i < (vectorCount + 1) / 2; i++)
+		if (i >= 1 && GetBitmaskValue(buffer, (i - 1) * 2))
+			lastCoord.x += *(char*)&buffer[nPos++];
+		else {
 			lastCoord.x = *(short*)&buffer[nPos]; nPos += 2;
+		if (i >= 1 && GetBitmaskValue(buffer, (i - 1) * 2 + 1))
+			lastCoord.y += *(char*)&buffer[nPos++];
+		else
 			lastCoord.y = *(short*)&buffer[nPos]; nPos += 2;
-		}
 		vMoves.push_back(lastCoord);
 	}
 	return vMoves;
 }
+
+#define MAP_WIDTH (13982 / 2)
+#define MAP_HEIGHT (14446 / 2)
 
 bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 {
@@ -302,9 +315,9 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 	std::vector<MovementVector> vMoves = readWaypoints(&request->delta, request->vectorNo);
 	Logging->writeLine("Move to(normal): x:%f, y:%f, type: %i, vectorNo: %i\n", request->x, request->y, request->type, vMoves.size());
 	for (int i = 0; i < vMoves.size(); i++)
-		printf("     Vector %i, x: %i, y: %i\n", i, vMoves[i].x, vMoves[i].y);
+		printf("     VectorA %i, x: %f, y: %f\n", i, 2.0 * vMoves[i].x + MAP_WIDTH, 2.0 * vMoves[i].y + MAP_HEIGHT);
 
-	MovementAns *answer = MovementAns::create(request->vectorNo, request->delta);
+	MovementAns *answer = MovementAns::create(request->vectorNo);
 	answer->ok = 1;
 	answer->vectorNo = request->vectorNo;
 	answer->netId = peerInfo(peer)->netId;
