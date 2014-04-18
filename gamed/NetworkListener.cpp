@@ -75,7 +75,7 @@ void NetworkListener::netLoop()
 
 				event.peer->data = new ClientInfo();
 				peerInfo(event.peer)->setName("RipWars");
-				peerInfo(event.peer)->setType("Draven");
+				peerInfo(event.peer)->setType("Teemo");
 				peerInfo(event.peer)->skinNo = 0;
 				peerInfo(event.peer)->netId = GetNewNetID();
 
