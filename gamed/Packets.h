@@ -289,23 +289,7 @@ struct MovementReq
 	uint32 netId;
 	uint8 delta;
 
-	MovementVector *getVector(uint32 index)
-	{
-		if(index >= vectorNo)
-			return NULL;
-
-		return &((MovementVector *)((hasDelta()) ? (&delta)+1 : &delta))[index]; //A very fancy way of getting the struct from the dynamic buffer
-	}
-
-	bool hasDelta()
-	{
-		return (delta == 0);
-	}
-
-	uint32 size()
-	{
-		return sizeof(MovementReq)+((vectorNo)*sizeof(MovementVector))+(hasDelta() ? 1 : 0);
-	}
+	
 };
 
 struct MovementAns
@@ -319,36 +303,39 @@ struct MovementAns
 	uint16 ok;
 	uint8 vectorNo;
 	uint32 netId;
-	uint8 delta;
+	uint8 moveData; //bitMasks + Move Vectors
 
 	MovementVector *getVector(uint32 index)
 	{
-		if(index >= vectorNo)
+		if(index >= vectorNo/2)
 			return NULL;
+		MovementVector* vPoints = (MovementVector*)((DWORD)&moveData + maskCount());
 
-		return &((MovementVector *)((hasDelta()) ? (&delta)+1 : &delta))[index]; //A very fancy way of getting the struct from the dynamic buffer
+		return &vPoints[index];
 	}
 
-	bool hasDelta()
-	{
-		return delta > 0;
+	int maskCount() {
+		float fVal = vectorNo/2;
+		return ceil((fVal - 1) / 4);
 	}
 
-	static uint32 size(uint8 vectorNo, bool hasDelta = false)
+	static uint32 size(uint8 vectorNo)
 	{
-		return sizeof(MovementAns)+((vectorNo)*sizeof(MovementVector))+(hasDelta ? 1 : 0);
+		float fVectors = vectorNo;
+		int maskCount = ceil((fVectors - 1) / 4);
+		return sizeof(MovementAns)+(vectorNo*sizeof(MovementVector)) + maskCount;//-1 since struct already has first moveData byte
 	}
 
 	uint32 size()
 	{
-		return size(vectorNo, hasDelta());
+		return size(vectorNo/2);
 	}
 
-	static MovementAns *create(uint32 vectorNo, uint8 hasDelta = 0)
+	static MovementAns *create(uint32 vectorNo)
 	{
-		MovementAns *packet = (MovementAns*)new uint8[size(vectorNo,hasDelta)];
-		memset(packet, 0, size(vectorNo));
-		packet->delta = hasDelta;
+		int nSize = size(vectorNo/2);
+		MovementAns *packet = (MovementAns*)new uint8[nSize];
+		memset(packet, 0, nSize);
 		packet->header.cmd = PKT_S2C_MoveAns;
 		packet->header.ticks = clock();
 		packet->vectorNo = vectorNo;
@@ -647,8 +634,8 @@ struct HeroSpawn3 {
 	HeroSpawn3() {
 		header.cmd = (PacketCmd)0xAD;
 		unk = 0;
-		health = 561;
-		maxHealth = 561;
+		health = 1337;
+		maxHealth = 666;
 	}
 
 	PacketHeader header;

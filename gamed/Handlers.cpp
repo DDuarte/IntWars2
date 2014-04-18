@@ -286,6 +286,7 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 	}
 
 	float vCount = request->vectorNo / 2;
+	int maskCount = ceil((vCount - 1) / 4);
 
 	LPBYTE lpBuffer = (LPBYTE)&request->delta;
 	UINT nPos = 0;
@@ -294,7 +295,7 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 	modifierBits.push_back(0);
 	modifierBits.push_back(0);
 
-	for (int i = 0; i < ceil((vCount - 1) / 4); i++)
+	for (int i = 0; i < maskCount; i++)
 	{
 		BYTE bitMask = lpBuffer[nPos++];
 		for (int j = 1; j <= 8; j++)
@@ -307,31 +308,31 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 	std::vector<MovementVector> vMoves;
 	for (int i = 0; i < vCount; i++) {
 		BYTE a = modifierBits[0];
-		//BYTE b = modifierBits[1];
+		BYTE b = modifierBits[1];
 		modifierBits.erase(modifierBits.begin());
-		//modifierBits.erase(modifierBits.begin());
+		modifierBits.erase(modifierBits.begin());
 		if (a == 1)
-			lastCoord.x += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++], 1);
+			lastCoord.x += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++],1);
 		else {
-			lastCoord.x = UnsignedToSigned(*(WORD*)&lpBuffer[nPos], 2);
+			lastCoord.x = UnsignedToSigned(*(WORD*)&lpBuffer[nPos],2);
 			nPos += 2;
 		}
 
-		if (a == 1)
-			lastCoord.y += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++], 1);
+		if (b == 1)
+			lastCoord.y += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++],1);
 		else {
-			lastCoord.y = UnsignedToSigned(*(WORD*)&lpBuffer[nPos], 2);
+			lastCoord.y = UnsignedToSigned(*(WORD*)&lpBuffer[nPos],2);
 			nPos += 2;
 		}
 		
 		vMoves.push_back(lastCoord);
 	}
 
-	Logging->writeLine("Move to(normal): x:%f, y:%f, type: %i, vectorNo: %i\n", request->x, request->y, request->type, vMoves.size());
+	Logging->writeLine("[%i] Move to(normal): x:%f, y:%f, type: %i, vectorNo: %i\n", maskCount, request->x, request->y, request->type, vMoves.size());
 	for (int i = 0; i < vMoves.size(); i++)
 		printf("     Vector %i, x: %i, y: %i\n", i, vMoves[i].x, vMoves[i].y);
 
-	MovementAns *answer = MovementAns::create(request->vectorNo, request->delta);
+	MovementAns *answer = MovementAns::create(request->vectorNo);
 	answer->ok = 1;
 	answer->vectorNo = request->vectorNo;
 	answer->netId = peerInfo(peer)->netId;
