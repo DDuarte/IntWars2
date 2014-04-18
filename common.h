@@ -27,48 +27,61 @@ enum GameCmd : uint8
 enum PacketCmd : uint8
 {                                               //Channel //Type
 	PKT_KeyCheck = 0x00, //0      //UPDATED  
-	PKT_ChatBoxMessage = 0x68, //5 //UPDATED
-	PKT_S2C_StartSpawn = 0x61, //? //UPDATED
+
 	PKT_S2C_EndSpawn = 0x11, //? //UPDATED
 	PKT_C2S_QueryStatusReq = 0x14, //1 //UPDATED
 	PKT_S2C_SkillUp = 0x15, //3 //UPDATED
 	PKT_C2S_Ping_Load_Info = 0x16, //1  //UPDATED
+
 	PKT_S2C_ViewAns = 0x2B, //3  //UPDATED
 	PKT_C2S_ViewReq = 0x2D, //1 //UPDATED
+
 	PKT_C2S_SkillUp = 0x38, //1 //UPDATED
 	PKT_S2C_AttentionPing = 0x3F, //3 //UPDATED
+
 	PKT_S2C_Emotion = 0x41, //3 UPDATED
 	PKT_C2S_Emotion = 0x47, //1 UPDATED
-	PKT_S2C_Announce = 0x4C, //3
 	PKT_S2C_HeroSpawn = 0x4B, //3 UPDATED
-	PKT_S2C_TurretSpawn = 0x9C, //3 UPDATED
-	PKT_S2C_LevelPropSpawn = 0xCF, //3 UPDATED
+	PKT_S2C_Announce = 0x4C, //3
+
 	PKT_C2S_StartGame = 0x51, //1 //UPDATED
 	PKT_S2C_SynchVersion = 0x53, //3 //UPDATED
+	PKT_C2S_ScoreBord = 0x55, //1 //UPDATED
 	PKT_C2S_AttentionPing = 0x56, //1 //UPDATED
-	PKT_C2S_ScoreBord = 0x5C, //1
 	PKT_S2C_StartGame = 0x5B, //? //UPDATED 
-	PKT_C2S_OpenShop = 0x63, //1
+
+	PKT_S2C_StartSpawn = 0x61, //? //UPDATED
+	//PKT_C2S_OpenShop = 0x63, //1 - DEPRECATED
 	PKT_C2S_ClientReady = 0x64, //6 //UPDATED ?
 	PKT_S2C_LoadHero = 0x65, //6 //UPDATED
 	PKT_S2C_LoadName = 0x66, //6 //UPDATED
 	PKT_S2C_LoadScreenInfo = 0x67, //6 //UPDATED
+	PKT_ChatBoxMessage = 0x68, //5 //UPDATED
+
 	PKT_C2S_MoveReq = 0x71, //1 //UPDATED
-	PKT_C2S_MoveConfirm = 0x7D, //1
-	PKT_C2S_ReqBuyItem = 0x82, //1 //UPDATED
-	PKT_C2S_LockCamera = 0x88, //1
+	PKT_C2S_MoveConfirm = 0x76, //1 //UPDATED
+
+	PKT_C2S_LockCamera = 0x80, //1 //UPDATED
+	PKT_C2S_ReqBuyItem = 0x81, //1 //UPDATED
 	PKT_S2C_QueryStatusAns = 0x87, //? //UPDATED
-	PKT_C2S_Exit = 0x96, //1
-	PKT_World_SendGameNumber = 0x91, //3
+	PKT_C2S_Exit = 0x8E, //1 //UPDATED
+
+	PKT_World_SendGameNumber = 0x91, //3 //UPDATED
 	PKT_S2C_Ping_Load_Info = 0x94, //4 //UPDATED
-	PKT_C2S_GameNumberReq = 0xA6, //1
-	PKT_C2S_Surrender = 0xAE, //1
+	PKT_S2C_TurretSpawn = 0x9C, //3 UPDATED
+
+	PKT_C2S_Surrender = 0xA3, //1 //UPDATED
+	//PKT_C2S_GameNumberReq = 0xA6, //1 //DEPRECATED
 	PKT_C2S_StatsConfirm = 0xA7, //1 UPDATED
 	PKT_C2S_Click = 0xAE, //1 //UPDATED
-	PKT_S2C_FogUpdate2 = 0xC6, //3
+
 	PKT_C2S_SynchVersion = 0xBC, //1 //UPDATED
 	PKT_C2S_CharLoaded = 0xBD, //1 //UPDATED
+
 	PKT_S2C_CharStats = 0xC3, //4 //UPDATED
+	PKT_S2C_FogUpdate2 = 0x23, //3 //UPDATED?
+	PKT_S2C_LevelPropSpawn = 0xCF, //3 UPDATED
+
 	PKT_Batch = 0xFF, //3
 };
 

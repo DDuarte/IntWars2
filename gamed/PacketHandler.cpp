@@ -29,13 +29,13 @@ PacketHandler::PacketHandler(ENetHost *server, BlowFish *blowfish)
 	registerHandler(&PacketHandler::handleSpawn,           PKT_C2S_CharLoaded, CHL_C2S);
 	registerHandler(&PacketHandler::handleMap,             PKT_C2S_ClientReady, CHL_LOADING_SCREEN);
 	registerHandler(&PacketHandler::handleSynch,           PKT_C2S_SynchVersion, CHL_C2S);
-	registerHandler(&PacketHandler::handleGameNumber,      PKT_C2S_GameNumberReq, CHL_C2S);
+	//registerHandler(&PacketHandler::handleGameNumber,      PKT_C2S_GameNumberReq, CHL_C2S);
 	registerHandler(&PacketHandler::handleQueryStatus,     PKT_C2S_QueryStatusReq, CHL_C2S);
 	registerHandler(&PacketHandler::handleStartGame,       PKT_C2S_StartGame, CHL_C2S);
 	registerHandler(&PacketHandler::handleNull,            PKT_C2S_Exit, CHL_C2S);
 	registerHandler(&PacketHandler::handleView,            PKT_C2S_ViewReq, CHL_C2S);
 	registerHandler(&PacketHandler::handleNull,            PKT_C2S_Click, CHL_C2S);
-	registerHandler(&PacketHandler::handleNull,            PKT_C2S_OpenShop, CHL_C2S);
+	//registerHandler(&PacketHandler::handleNull,            PKT_C2S_OpenShop, CHL_C2S);
 	registerHandler(&PacketHandler::handleAttentionPing,   PKT_C2S_AttentionPing, CHL_C2S);
 	registerHandler(&PacketHandler::handleChatBoxMessage , PKT_ChatBoxMessage, CHL_COMMUNICATION);
 	registerHandler(&PacketHandler::handleMove,            PKT_C2S_MoveReq, CHL_C2S);

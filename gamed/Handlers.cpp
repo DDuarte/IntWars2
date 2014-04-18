@@ -175,21 +175,25 @@ bool PacketHandler::handleSpawn(ENetPeer *peer, ENetPacket *packet)
 	LevelPropSpawn lpSpawn;
 
 	lpSpawn.SetProp("LevelProp_Yonkey", "Yonkey");
+	lpSpawn.header.netId = 0;
 	lpSpawn.netId = GetNewNetID();
 	lpSpawn.x = 12465; lpSpawn.y = 101;
 	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
 
 	lpSpawn.SetProp("LevelProp_Yonkey1", "Yonkey");
+	lpSpawn.header.netId = 0;
 	lpSpawn.netId = GetNewNetID();
 	lpSpawn.x = -76; lpSpawn.y = 94;
 	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
 
 	lpSpawn.SetProp("LevelProp_ShopMale", "ShopMale");
+	lpSpawn.header.netId = 0;
 	lpSpawn.netId = GetNewNetID();
 	lpSpawn.x = 13374; lpSpawn.y = 194;
 	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
 
 	lpSpawn.SetProp("LevelProp_ShopMale1", "ShopMale");
+	lpSpawn.header.netId = 0;
 	lpSpawn.netId = GetNewNetID();
 	lpSpawn.x = -99; lpSpawn.y = 191;
 	sendPacket(peer, reinterpret_cast<uint8*>(&lpSpawn), sizeof(LevelPropSpawn), CHL_S2C);
@@ -303,18 +307,24 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 	std::vector<MovementVector> vMoves;
 	for (int i = 0; i < vCount; i++) {
 		BYTE a = modifierBits[0];
-		modifierBits.erase(modifierBits.begin());	//if table.remove(modifierBits, 1) == 1 then
-		if (a == 1) {
-			lastCoord.x += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++],1);
-			lastCoord.y += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++],1);
-			vMoves.push_back(lastCoord);
-		}
+		//BYTE b = modifierBits[1];
+		modifierBits.erase(modifierBits.begin());
+		//modifierBits.erase(modifierBits.begin());
+		if (a == 1)
+			lastCoord.x += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++], 1);
 		else {
-			lastCoord.x = UnsignedToSigned(*(WORD*)&lpBuffer[nPos],2);
-			lastCoord.y = UnsignedToSigned(*(WORD*)&lpBuffer[nPos + 2],2);
-			nPos += 4;
-			vMoves.push_back(lastCoord);
+			lastCoord.x = UnsignedToSigned(*(WORD*)&lpBuffer[nPos], 2);
+			nPos += 2;
 		}
+
+		if (a == 1)
+			lastCoord.y += UnsignedToSigned(*(BYTE*)&lpBuffer[nPos++], 1);
+		else {
+			lastCoord.y = UnsignedToSigned(*(WORD*)&lpBuffer[nPos], 2);
+			nPos += 2;
+		}
+		
+		vMoves.push_back(lastCoord);
 	}
 
 	Logging->writeLine("Move to(normal): x:%f, y:%f, type: %i, vectorNo: %i\n", request->x, request->y, request->type, vMoves.size());
@@ -346,8 +356,8 @@ bool PacketHandler::handleLoadPing(ENetPeer *peer, ENetPacket *packet)
 	response.userId = peerInfo(peer)->userId;
 
 
-	Logging->writeLine("loaded: %f, ping: %f, %i, %f\n", loadInfo->loaded, loadInfo->ping, loadInfo->unk4, loadInfo->f3);
-	bool bRet = broadcastPacket(reinterpret_cast<uint8*>(&response), sizeof(PingLoadInfo), 4, UNRELIABLE);
+	Logging->writeLine("loaded: %f, ping: %f, %f\n", loadInfo->loaded, loadInfo->ping, loadInfo->f3);
+	bool bRet = broadcastPacket(reinterpret_cast<uint8*>(&response), sizeof(PingLoadInfo), CHL_LOW_PRIORITY, UNRELIABLE);
 	static bool bLoad = false;
 	if (!bLoad) {
 		handleMap(peer, NULL);
@@ -359,7 +369,7 @@ bool PacketHandler::handleLoadPing(ENetPeer *peer, ENetPacket *packet)
 bool PacketHandler::handleQueryStatus(HANDLE_ARGS)
 {
 	QueryStatus response;
-	return sendPacket(peer, reinterpret_cast<uint8*>(&response), sizeof(QueryStatus), 3);
+	return sendPacket(peer, reinterpret_cast<uint8*>(&response), sizeof(QueryStatus), CHL_S2C);
 }
 
 bool PacketHandler::handleChatBoxMessage(HANDLE_ARGS)
@@ -499,8 +509,8 @@ bool PacketHandler::handleSkillUp(HANDLE_ARGS) {
 	SkillUpResponse skillUpResponse;
 	
 	skillUpResponse.skill = skillUpPacket->skill;
-	skillUpResponse.level = 1;
-	skillUpResponse.pointsLeft = 1;
+	skillUpResponse.level = 0x01;
+	skillUpResponse.pointsLeft = 5;
 	
 	return sendPacket(peer, reinterpret_cast<uint8*>(&skillUpResponse),sizeof(skillUpResponse),CHL_GAMEPLAY);
 

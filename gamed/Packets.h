@@ -118,7 +118,6 @@ typedef struct _PingLoadInfo
 	float loaded;
 	float ping;
 	float f3;
-	uint8 unk4;
 }PingLoadInfo;
 
 uint8 *createDynamicPacket(uint8 *str, uint32 size);
@@ -550,9 +549,15 @@ struct CharacterStats
 
 struct ChatMessage
 {
+	uint8 cmd;
+	uint32 netId;
+	uint32 unk1;
+	uint8 unk2;
+
 	uint32 playerNo;
 	ChatType type;
 	uint32 lenght;
+	uint8 unk3[32];
 	int8 msg;
 
 	int8 *getMessage()
@@ -642,14 +647,14 @@ struct HeroSpawn3 {
 	HeroSpawn3() {
 		header.cmd = (PacketCmd)0xAD;
 		unk = 0;
-		x = 561;
-		y = 561;
+		health = 561;
+		maxHealth = 561;
 	}
 
 	PacketHeader header;
 	uint16 unk;
-	float x;
-	float y;
+	float health;
+	float maxHealth;
 };
 
 struct TurretSpawn
