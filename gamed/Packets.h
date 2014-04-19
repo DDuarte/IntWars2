@@ -313,15 +313,13 @@ struct MovementAns
 	}
 
 	int maskCount() {
-		float fVal = vectorNo/2;
-		return ceil((fVal - 1) / 4);
+		return (vectorNo + 5) / 8;
 	}
 
 	static uint32 size(uint8 vectorNo)
 	{
-		float fVectors = vectorNo;
-		int maskCount = ceil((fVectors - 1) / 4);
-		return sizeof(MovementAns)+(vectorNo*sizeof(MovementVector)) + maskCount;//-1 since struct already has first moveData byte
+		int maskSize = (vectorNo + 2) / 4;
+		return sizeof(MovementAns)+(vectorNo*sizeof(MovementVector)) + maskSize;//-1 since struct already has first moveData byte
 	}
 
 	uint32 size()
