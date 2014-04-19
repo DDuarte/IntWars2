@@ -287,9 +287,7 @@ struct MovementReq
 	uint32 zero;
 	uint8 vectorNo;
 	uint32 netId;
-	uint8 delta;
-
-	
+	uint8 moveData;
 };
 
 struct MovementAns
@@ -720,8 +718,31 @@ typedef struct _SkillUpResponse
 	uint8 level; //?
 	uint8 pointsLeft;
 
-
 } SkillUpResponse;
+
+typedef struct _BuyItemReq
+{
+	PacketHeader header;
+	uint32 id;
+} BuyItemReq;
+
+typedef struct _BuyItemAns
+{
+	_BuyItemAns()
+	{
+		header.cmd = (PacketCmd)PKT_S2C_BuyItemAns;
+		unk1 = 0;
+		unk2 = 0;
+		unk3 = 0;
+	}
+	PacketHeader header;
+	uint16 itemId;
+	uint16 unk1;
+	uint8 slotId;
+	uint8 stack;
+	uint16 unk2;
+	uint8 unk3;
+} BuyItemAns;
 
 typedef struct _EmotionPacket
 {

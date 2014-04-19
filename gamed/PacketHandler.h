@@ -59,6 +59,7 @@ class PacketHandler
 		bool handleChatBoxMessage(HANDLE_ARGS);
 		bool handleSkillUp(HANDLE_ARGS);
 		bool handleEmotion(HANDLE_ARGS);
+		bool handleBuyItem(HANDLE_ARGS);
 
 		//Tools
 		void printPacket(uint8 *buf, uint32 len);

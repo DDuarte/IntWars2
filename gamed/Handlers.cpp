@@ -201,6 +201,14 @@ bool PacketHandler::handleSpawn(ENetPeer *peer, ENetPacket *packet)
 
 	StatePacket end(PKT_S2C_EndSpawn);
 	bool p3 = sendPacket(peer, reinterpret_cast<uint8*>(&end), sizeof(StatePacket), CHL_S2C);
+
+	BuyItemAns recall;
+	recall.header.netId = peerInfo(peer)->netId;
+	recall.itemId = 2001;
+	recall.slotId = 7;
+	recall.stack = 1;
+	bool p4 = sendPacket(peer, reinterpret_cast<uint8*>(&recall), sizeof(BuyItemAns), CHL_S2C); //activate recall slot
+
 	return p1 & p2 & p3;
 }
 
@@ -315,7 +323,7 @@ bool PacketHandler::handleMove(ENetPeer *peer, ENetPacket *packet)
 		return true;
 	}
 
-	std::vector<MovementVector> vMoves = readWaypoints(&request->delta, request->vectorNo);
+	std::vector<MovementVector> vMoves = readWaypoints(&request->moveData, request->vectorNo);
 
 	Logging->writeLine("Move to(normal): x:%f, y:%f, type: %i, vectorNo: %i\n", request->x, request->y, request->type, vMoves.size());
 	for (int i = 0; i < vMoves.size(); i++)
@@ -504,6 +512,20 @@ bool PacketHandler::handleSkillUp(HANDLE_ARGS) {
 
 	return sendPacket(peer, reinterpret_cast<uint8*>(&skillUpResponse), sizeof(skillUpResponse), CHL_GAMEPLAY);
 
+}
+
+bool PacketHandler::handleBuyItem(HANDLE_ARGS) {
+	static int slot = 0;
+	BuyItemReq* request = reinterpret_cast<BuyItemReq*>(packet->data);
+	
+	BuyItemAns response;
+	response.header.netId = request->header.netId;
+	response.itemId = request->id;
+	response.slotId = slot++; //check for trinket ID and addapt slot
+	response.stack = 1;
+
+
+	return broadcastPacket(reinterpret_cast<uint8*>(&response), sizeof(response), CHL_S2C);
 }
 
 bool PacketHandler::handleEmotion(HANDLE_ARGS) {

@@ -57,12 +57,13 @@ enum PacketCmd : uint8
 	PKT_S2C_LoadName = 0x66, //6 //UPDATED
 	PKT_S2C_LoadScreenInfo = 0x67, //6 //UPDATED
 	PKT_ChatBoxMessage = 0x68, //5 //UPDATED
+	PKT_S2C_BuyItemAns = 0x6E, //3 //UPDATED
 
 	PKT_C2S_MoveReq = 0x71, //1 //UPDATED
 	PKT_C2S_MoveConfirm = 0x76, //1 //UPDATED
 
 	PKT_C2S_LockCamera = 0x80, //1 //UPDATED
-	PKT_C2S_ReqBuyItem = 0x81, //1 //UPDATED
+	PKT_C2S_BuyItemReq = 0x81, //1 //UPDATED
 	PKT_S2C_QueryStatusAns = 0x87, //? //UPDATED
 	PKT_C2S_Exit = 0x8E, //1 //UPDATED
 
