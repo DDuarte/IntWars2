@@ -130,7 +130,7 @@ typedef struct _LoadScreenInfo
 		memset(this, 0, sizeof(_LoadScreenInfo));
 
 		cmd = PKT_S2C_LoadScreenInfo;
-		blueMax = redMax = 6;		
+		blueMax = redMax = 6;
 	}
 
 	uint8 cmd;
@@ -149,7 +149,7 @@ typedef struct _LoadScreenPlayer
 	static _LoadScreenPlayer* create(PacketCmd cmd, int8 *str, uint32 size)
 	{
 		//Builds packet buffer
-		uint32 totalSize = sizeof(_LoadScreenPlayer)+size+1;
+		uint32 totalSize = sizeof(_LoadScreenPlayer)+size + 1;
 		uint8* buf = new uint8[totalSize];
 		memset(buf, 0, totalSize);
 
@@ -165,7 +165,7 @@ typedef struct _LoadScreenPlayer
 
 	static void destroy(_LoadScreenPlayer *packet)
 	{
-		delete [](uint8*)packet;
+		delete[](uint8*)packet;
 	}
 
 	uint8 cmd;
@@ -272,7 +272,7 @@ struct MovementVector
 		x = 0;
 		y = 0;
 	}
-	MovementVector(uint16 x,uint16 y) {
+	MovementVector(uint16 x, uint16 y) {
 		this->x = x;
 		this->y = y;
 	}
@@ -287,9 +287,9 @@ struct MovementReq
 	uint32 zero;
 	uint8 vectorNo;
 	uint32 netId;
-	uint8 delta;
+	uint8 pathData;
 
-	
+
 };
 
 struct MovementAns
@@ -307,7 +307,7 @@ struct MovementAns
 
 	MovementVector *getVector(uint32 index)
 	{
-		if(index >= vectorNo/2)
+		if (index >= vectorNo / 2)
 			return NULL;
 		MovementVector* vPoints = (MovementVector*)((DWORD)&moveData + maskCount());
 
@@ -315,7 +315,7 @@ struct MovementAns
 	}
 
 	int maskCount() {
-		float fVal = vectorNo/2;
+		float fVal = vectorNo / 2;
 		return ceil((fVal - 1) / 4);
 	}
 
@@ -328,12 +328,12 @@ struct MovementAns
 
 	uint32 size()
 	{
-		return size(vectorNo/2);
+		return size(vectorNo / 2);
 	}
 
 	static MovementAns *create(uint32 vectorNo)
 	{
-		int nSize = size(vectorNo/2);
+		int nSize = size(vectorNo / 2);
 		MovementAns *packet = (MovementAns*)new uint8[nSize];
 		memset(packet, 0, nSize);
 		packet->header.cmd = PKT_S2C_MoveAns;
@@ -344,7 +344,7 @@ struct MovementAns
 
 	static void destroy(MovementAns *packet)
 	{
-		delete [](uint8*)packet;
+		delete[](uint8*)packet;
 	}
 
 };
@@ -406,13 +406,13 @@ struct CharacterStats
 	{
 		uint32 size = 0;
 
-		for(int i = 0; i < 32; i++)
+		for (int i = 0; i < 32; i++)
 		{
-			if(mask & 1)
+			if (mask & 1)
 				size++;
 			mask >>= 1;
 		}
-		if(addMask && size > 0)
+		if (addMask && size > 0)
 			size++;
 		return size;
 	}
@@ -420,47 +420,47 @@ struct CharacterStats
 	uint32 getSize()
 	{
 		uint32 blockNo = 0;
-		uint32 size = sizeof(GameHeader)+2+4;
+		uint32 size = sizeof(GameHeader)+2 + 4;
 		uint32 *offset = &mask;
 
 		//How many blocks do we have?
-		if(masterMask & MM_One)   blockNo++;
-		if(masterMask & MM_Two)   blockNo++;
-		if(masterMask & MM_Three) blockNo++;
-		if(masterMask & MM_Four)  blockNo++;
-		if(masterMask & MM_Five)  blockNo++;
+		if (masterMask & MM_One)   blockNo++;
+		if (masterMask & MM_Two)   blockNo++;
+		if (masterMask & MM_Three) blockNo++;
+		if (masterMask & MM_Four)  blockNo++;
+		if (masterMask & MM_Five)  blockNo++;
 
-		for(int i = 0, x = 0; i < blockNo; i++)
+		for (int i = 0, x = 0; i < blockNo; i++)
 		{
 			uint32 bits = countBits(offset[x], false);
-			size += bits*4+4;
-			x += bits+1;
+			size += bits * 4 + 4;
+			x += bits + 1;
 		}
 		return size;
 	}
 
 	static CharacterStats *create(uint32 blockNo, uint32 mask)
 	{
-		switch(blockNo)
+		switch (blockNo)
 		{
-			case 1: return create(mask, 0, 0, 0, 0);
-			case 2: return create(0, mask, 0, 0, 0);
-			case 3: return create(0, 0, mask, 0, 0);
-			case 4: return create(0, 0, 0, mask, 0);
-			case 5: return create(0, 0, 0, 0, mask);
-			default: return NULL;
+		case 1: return create(mask, 0, 0, 0, 0);
+		case 2: return create(0, mask, 0, 0, 0);
+		case 3: return create(0, 0, mask, 0, 0);
+		case 4: return create(0, 0, 0, mask, 0);
+		case 5: return create(0, 0, 0, 0, mask);
+		default: return NULL;
 		}
 	}
 
 	static CharacterStats *create(uint32 one, uint32 two, uint32 three, uint32 four, uint32 five)
 	{
 		//Calculate the total size needed
-		uint32 size = sizeof(GameHeader)+2+4; //The header + updateNo + masterMask + netId
-		size += countBits(one)*4;
-		size += countBits(two)*4;
-		size += countBits(three)*4;
-		size += countBits(four)*4;
-		size += countBits(five)*4;
+		uint32 size = sizeof(GameHeader)+2 + 4; //The header + updateNo + masterMask + netId
+		size += countBits(one) * 4;
+		size += countBits(two) * 4;
+		size += countBits(three) * 4;
+		size += countBits(four) * 4;
+		size += countBits(five) * 4;
 
 		//Set the defaults
 		CharacterStats *stats = (CharacterStats*)new uint8[size];
@@ -470,12 +470,12 @@ struct CharacterStats
 		stats->updateNo = 1;
 
 		//Set the master mask
-		if(one > 0)   stats->masterMask |= MM_One;
-		if(two > 0)   stats->masterMask |= MM_Two;
-		if(three > 0) stats->masterMask |= MM_Three;
-		if(four > 0)  stats->masterMask |= MM_Four;
-		if(five > 0)  stats->masterMask |= MM_Five;
-		
+		if (one > 0)   stats->masterMask |= MM_One;
+		if (two > 0)   stats->masterMask |= MM_Two;
+		if (three > 0) stats->masterMask |= MM_Three;
+		if (four > 0)  stats->masterMask |= MM_Four;
+		if (five > 0)  stats->masterMask |= MM_Five;
+
 		//Set all the masks
 		uint32 *offset = &stats->mask;
 		uint32 x = 0;
@@ -510,16 +510,16 @@ struct CharacterStats
 		//Get the offset for the block number
 		uint32 x = 0;
 		uint32 blocks = countBits(masterMask, false);
-		if(blocks > 1)
-			for(int i = 0; i < blockNo; i++)
-					x += countBits(offset[x], false);
+		if (blocks > 1)
+			for (int i = 0; i < blockNo; i++)
+				x += countBits(offset[x], false);
 
 		//Get the offset for the field
-		for(uint32 i = 0,  a = 0, mask = 1; i < 32; i++)
+		for (uint32 i = 0, a = 0, mask = 1; i < 32; i++)
 		{
-			if(mask & field)
+			if (mask & field)
 			{
-				memcpy(&offset[x+a+1], &value, 4);
+				memcpy(&offset[x + a + 1], &value, 4);
 				a++;
 			}
 			mask <<= 1;
@@ -592,7 +592,7 @@ struct HeroSpawn
 	{
 		header.cmd = PKT_S2C_HeroSpawn;
 		unk1 = 0;
-		memset(&name, 0, 128+64); //Set name + type to zero
+		memset(&name, 0, 128 + 64); //Set name + type to zero
 
 		x = 130880;
 		y = 502;
@@ -606,7 +606,7 @@ struct HeroSpawn
 	uint16 unk1;
 	uint8 name[128];
 	uint8 type[64];
-} ;
+};
 struct HeroSpawn2 {
 	HeroSpawn2() {
 		header.cmd = (PacketCmd)0xB9;
