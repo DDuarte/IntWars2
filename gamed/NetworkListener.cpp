@@ -68,13 +68,13 @@ void NetworkListener::netLoop()
 		switch (event.type)
 		{
 			case ENET_EVENT_TYPE_CONNECT:
-				Logging->writeLine("A new client connected connected\n");
+				Logging->writeLine("A new client connected: %i.%i.%i.%i:%i \n", event.peer->address.host & 0xFF, (event.peer->address.host >> 8) & 0xFF, (event.peer->address.host >> 16) & 0xFF, (event.peer->address.host >> 24) & 0xFF, event.peer->address.port);
 
 				/* Set some defaults */
 				event.peer->mtu = PEER_MTU;
 
 				event.peer->data = new ClientInfo();
-				peerInfo(event.peer)->setName("RipWars");
+				peerInfo(event.peer)->setName("Test");
 				peerInfo(event.peer)->setType("Teemo");
 				peerInfo(event.peer)->skinNo = 6;
 				peerInfo(event.peer)->netId = GetNewNetID();
@@ -92,7 +92,7 @@ void NetworkListener::netLoop()
 		break;
 
 		case ENET_EVENT_TYPE_DISCONNECT:
-			Logging->writeLine("Peer disconnected.\n");
+			Logging->writeLine("Client disconnected: %i.%i.%i.%i:%i \n", event.peer->address.host & 0xFF, (event.peer->address.host >> 8) & 0xFF, (event.peer->address.host >> 16) & 0xFF, (event.peer->address.host >> 24) & 0xFF, event.peer->address.port);
 
 			/* Cleanup */
 			delete (ClientInfo*)event.peer->data;
