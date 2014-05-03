@@ -295,11 +295,14 @@ inline bool GetBitmaskValue(byte mask[], int pos) {
 
 #include <vector>
 
-std::vector<MovementVector> readWaypoints(byte* buffer, int vectorCount) {
+std::vector<MovementVector> readWaypoints(byte* buffer, int coordCount) {
+	UINT nPos = (coordCount + 5) / 8;
+	if (coordCount % 2)
+		nPos++;
+	int vectorCount = coordCount / 2;
 	std::vector<MovementVector> vMoves;
 	MovementVector lastCoord;
-	UINT nPos = (vectorCount + 5) / 8;
-	for (int i = 0; i < (vectorCount + 1) / 2; i++) {
+	for (int i = 0; i < vectorCount; i++) {
 		if (GetBitmaskValue(buffer, (i - 1) * 2)) {
 			lastCoord.x += *(char*)&buffer[nPos++];
 		}
