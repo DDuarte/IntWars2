@@ -659,6 +659,36 @@ struct TurretSpawn
 	uint8 name[29];
 	uint8 type[42];
 };
+struct GameTimer {
+    GameTimer(float fTime) {
+        header.cmd = PKT_S2C_GameTimer;
+        header.netId = 0;
+        this->fTime = fTime;
+    }
+    PacketHeader header;
+    float fTime;
+};
+struct GameTimerUpdate {
+    GameTimerUpdate(float fTime) {
+        header.cmd = PKT_S2C_GameTimerUpdate;
+        header.netId = 0;
+        this->fTime = fTime;
+    }
+    PacketHeader header;
+    float fTime;
+};
+struct SpellSet {
+    SpellSet(DWORD netID, uint32 _spellID, uint32 _level) {
+        ZeroMemory(this, sizeof(SpellSet));
+        header.cmd = PacketCmd(0x5A);
+        header.netId = netID;
+        spellID = _spellID;
+        level = _level;
+    }
+    PacketHeader header;
+    uint32 spellID;
+    uint32 level;
+};
 class LevelPropSpawn
 {
 public:
