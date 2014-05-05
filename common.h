@@ -43,6 +43,9 @@ enum PacketCmd : uint8
 	PKT_C2S_Emotion = 0x47, //1 UPDATED
 	PKT_S2C_HeroSpawn = 0x4B, //3 UPDATED
 	PKT_S2C_Announce = 0x4C, //3
+	
+	PKT_S2C_GameTimer = 0xC0,
+	PKT_S2C_GameTimerUpdate = 0xC1,
 
 	PKT_C2S_StartGame = 0x51, //1 //UPDATED
 	PKT_S2C_SynchVersion = 0x53, //3 //UPDATED
