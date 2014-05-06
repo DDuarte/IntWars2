@@ -38,7 +38,7 @@ Please fork and upload any progress.
 Contact
 -------
 We are at irc.freenode.net##botoflegends (Active)
-
+or Bot of Legends forums (www.botoflegends.com/forum/)
 ~~We are at irc.freenode.net#HeroWars~~ (Dead)
 
 Notes
