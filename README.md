@@ -37,7 +37,7 @@ Please fork and upload any progress.
 
 Contact
 -------
-We are at irc.freenode.net#riotcontrol (Active)
+We are at irc.freenode.net##botoflegends (Active)
 
 ~~We are at irc.freenode.net#HeroWars~~ (Dead)
 
