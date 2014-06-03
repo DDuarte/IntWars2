@@ -45,3 +45,6 @@ or Bot of Legends forums (www.botoflegends.com/forum/)
 Notes
 -------
 I updated this project on my free time, so anyone who cares can fiddle with it at the latest game version.
+
+
+My reddit username is 'imSpudgy', the topic author who posted it to front page is fake, I did not announce this project anywhere.
