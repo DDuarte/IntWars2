@@ -1,64 +1,819 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
-    </Filter>
     <Filter Include="Protocol">
       <UniqueIdentifier>{eeac7bfa-3b4f-4c49-987a-ab1bfa6da602}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Protocol\Packets">
+      <UniqueIdentifier>{1e28f171-f32c-413c-827d-67e27f25af02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol\Packets\General">
+      <UniqueIdentifier>{2237f841-d273-4b5a-b954-5e8327f08c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol\Packets\Interface">
+      <UniqueIdentifier>{316a4c70-e1a6-4539-a022-8fa41e346c75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol\Packets\Classes">
+      <UniqueIdentifier>{16cd8ef2-f22a-4d08-b660-cfe933c0b6e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{9f4d6fcd-200b-4b1a-b188-309264a5e263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\luabind">
+      <UniqueIdentifier>{df3277f1-5936-4466-943e-86243e1a6848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\lua">
+      <UniqueIdentifier>{88637c09-4865-479b-9d78-2e85009260cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileFormats">
+      <UniqueIdentifier>{a20f3a8c-cd32-4e47-bf86-7cf33e13e6f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileFormats\RAF">
+      <UniqueIdentifier>{72f6a604-24ac-4177-b9fb-2b5078998892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileFormats\AIMESH">
+      <UniqueIdentifier>{e4bf50dc-3664-42c1-8f4c-3160dc17f698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapView">
+      <UniqueIdentifier>{fab8a3b8-fc37-4a0d-adc3-98656d54a240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileFormats\Inibin">
+      <UniqueIdentifier>{b135a811-b485-4e53-b145-a736f0bc5686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{e7c2100f-d5cf-4a13-bbcd-1869f769cf1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileFormats\SCO">
+      <UniqueIdentifier>{a4d4abf5-05a8-4970-bf1e-f4072d12fc9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{645d7255-9d43-4008-b235-beeaecbfdd2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapView\DXTools">
+      <UniqueIdentifier>{f3c3b20a-d0f9-4a6b-9cb8-ef2bf80e854c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapView\DXTools\Shader">
+      <UniqueIdentifier>{d0ae70f4-7c58-4152-889a-dbe75ea84050}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="General">
+      <UniqueIdentifier>{5fc75e17-1d0a-4cab-ac0c-d5cac49be29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Math">
+      <UniqueIdentifier>{78bdbe30-5c7b-4885-8863-766ae8588d71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\gamed\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gamed\NetworkListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gamed\Handlers.cpp">
       <Filter>Protocol</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gamed\PacketHandler.cpp">
       <Filter>Protocol</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gamed\Packets.cpp">
-      <Filter>Protocol</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gamed\main.cpp" />
+    <ClCompile Include="..\..\gamed\Packets.cpp">
+      <Filter>Protocol\Packets\General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\UpdateStatsPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\MovementReqPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\SendablePacket.cpp">
+      <Filter>Protocol\Packets\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\ReceivablePacket.cpp">
+      <Filter>Protocol\Packets\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\PacketBuffer.cpp">
+      <Filter>Protocol\Packets\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\MovementAnsPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\vmath.cpp">
+      <Filter>include\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lapi.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lauxlib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lbaselib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lbitlib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lcode.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lcorolib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lctype.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldblib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldebug.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldo.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldump.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lfunc.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lgc.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\linit.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\liolib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\llex.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lmathlib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lmem.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\loadlib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lobject.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lopcodes.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\loslib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lparser.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lstate.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lstring.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lstrlib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ltable.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ltablib.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ltm.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lua.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\luac.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lundump.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lvm.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lzio.c">
+      <Filter>include\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\class.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\class_info.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\class_registry.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\class_rep.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\create_class.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\error.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\exception_handler.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\function.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\inheritance.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\link_compatibility.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\object_rep.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\open.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\pcall.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\scope.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\stack_content_by_name.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\weak_ref.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\luabind\wrapper_base.cpp">
+      <Filter>include\luabind</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\DashCmdPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\SpellCmdPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\RiotArchiveFile.cpp">
+      <Filter>FileFormats\RAF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\RiotArchiveFileEntry.cpp">
+      <Filter>FileFormats\RAF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\RiotArchiveFileHandler.cpp">
+      <Filter>FileFormats\RAF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\RiotArchiveFileObject.cpp">
+      <Filter>FileFormats\RAF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\AiPathReader.cpp">
+      <Filter>FileFormats\AIMESH</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\ScoReader.cpp">
+      <Filter>FileFormats\SCO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\MapView.cpp">
+      <Filter>MapView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\IniBin.cpp">
+      <Filter>FileFormats\Inibin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Tower.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Unit.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Hero.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\ObjectManager.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\EmitParticlesPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\WaypointPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Pathfinder.cpp">
+      <Filter>MapView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\MissileSpawnPacket.cpp">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Particle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\GameMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\SummonersRift.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\DrawObject.cpp">
+      <Filter>MapView\DXTools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Renderer.cpp">
+      <Filter>MapView\DXTools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Circle.cpp">
+      <Filter>MapView\DXTools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Server.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\CharacterDataStruct.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Log.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\LoLPacket.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\LuaVM.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\NetworkListener.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\ObjectAttributes.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\RafDB.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\RpcBuffer.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\Client.cpp">
+      <Filter>General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\gamed\NetworkListener.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gamed\Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\gamed\PacketHandler.h">
       <Filter>Protocol</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gamed\Packets.h">
-      <Filter>Protocol</Filter>
+      <Filter>Protocol\Packets\General</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gamed\ChatBox.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\gamed\UpdateStatsPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gamed\Client.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\gamed\MovementReqPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\SendablePacket.h">
+      <Filter>Protocol\Packets\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\ReceivablePacket.h">
+      <Filter>Protocol\Packets\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\PacketBuffer.h">
+      <Filter>Protocol\Packets\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\MovementAnsPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\vmath.h">
+      <Filter>include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lapi.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lauxlib.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lcode.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lctype.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\ldebug.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\ldo.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lfunc.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lgc.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\llex.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\llimits.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lmem.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lobject.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lopcodes.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lparser.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lstate.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lstring.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\ltable.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\ltm.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lua.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lua.hpp">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\luaconf.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lualib.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lundump.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lvm.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\LUA\lzio.h">
+      <Filter>include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\adopt_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\back_reference.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\back_reference_fwd.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\class.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\class_info.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\config.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\container_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\copy_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\dependency_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\discard_result_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\error.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\exception_handler.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\from_stack.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\function.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\get_main_thread.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\get_pointer.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\handle.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\iterator_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\lua_include.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\lua502.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\luabind.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\make_function.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\nil.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\no_dependency.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\object.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\open.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\operator.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\out_value_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\prefix.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\raw_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\return_reference_to_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\scope.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\shared_ptr_converter.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\tag_function.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\typeid.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\value_wrapper.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\vector.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\version.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\weak_ref.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\wrapper_base.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\yield_policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_0x.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_function.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_member.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_operator_iterate.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\class_registry.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\class_rep.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\constructor.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\conversion_storage.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\convert_to_lua.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\debug.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\decorate_type.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\deduce_signature.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\enum_maker.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\format_signature.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\garbage_collector.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\has_get_pointer.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\inheritance.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\instance_holder.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\link_compatibility.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\make_instance.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\most_derived.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\object_call.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\object_rep.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\open.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\operator_id.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\other.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\pcall.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\pointee_sizeof.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\pointee_typeid.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\policy.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\primitives.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\property.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\ref.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\signature_match.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\stack_utils.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\typetraits.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\include\luabind\detail\yes_no.hpp">
+      <Filter>include\luabind</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\DashCmdPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\SpellCmdPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\RiotArchiveFileObject.h">
+      <Filter>FileFormats\RAF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\RiotArchiveFile.h">
+      <Filter>FileFormats\RAF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\RiotArchiveFileEntry.h">
+      <Filter>FileFormats\RAF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\RiotArchiveFileHandler.h">
+      <Filter>FileFormats\RAF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\AiPathReader.h">
+      <Filter>FileFormats\AIMESH</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\ScoReader.h">
+      <Filter>FileFormats\SCO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\MapView.h">
+      <Filter>MapView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\IniBin.h">
+      <Filter>FileFormats\Inibin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Hero.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Tower.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Unit.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\ObjectManager.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\EmitParticlesPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\WaypointPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Pathfinder.h">
+      <Filter>MapView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\MissileSpawnPacket.h">
+      <Filter>Protocol\Packets\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Particle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\SummonersRift.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\GameMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\DrawObject.h">
+      <Filter>MapView\DXTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Renderer.h">
+      <Filter>MapView\DXTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Circle.h">
+      <Filter>MapView\DXTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\VS_WorldViewProj.h">
+      <Filter>MapView\DXTools\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\PS_Circle.h">
+      <Filter>MapView\DXTools\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\LoLPacket.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\LuaVM.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\NetworkListener.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\ObjectAttributes.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\RpcBuffer.h">
+      <Filter>General</Filter>
     </ClInclude>
     <ClInclude Include="..\..\stdafx.h">
-      <Filter>Header Files</Filter>
+      <Filter>General</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\gamed\Server.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Client.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\RafDB.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\CharacterDataStruct.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\ChatBox.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common.h">
+      <Filter>General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gamed\Log.h">
+      <Filter>General</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\gamed\VS_WorldViewProj.hlsl">
+      <Filter>MapView\DXTools\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\gamed\PS_Circle.hlsl">
+      <Filter>MapView\DXTools\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

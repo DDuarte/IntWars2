@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,10 +19,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -38,7 +40,7 @@
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bin\VC$(PlatformToolsetVersion)_$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)__$(Platform)_$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bin\VC$(PlatformToolsetVersion)_$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)__$(Platform)_$(Configuration)\</IntDir>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -46,6 +48,14 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>../../gamed/include;../../gamed/include/lua;F:\Include\boost_1_55_0;$(DXSDK_DIR)\Include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);;</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath);$(SolutionDir)\..\gamed\include\;$(SolutionDir)\..\gamed\include\LUA\;$(BOOST);$(DXSDK_DIR)\Include\</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(DXSDK_DIR)\Lib\x86\</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -70,29 +80,338 @@
       <PreprocessorDefinitions>WIN32;</PreprocessorDefinitions>
       <PrecompiledHeader>
       </PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ws2_32.lib;Winmm.lib;</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\gamed\AiPathReader.cpp" />
+    <ClCompile Include="..\..\gamed\CharacterDataStruct.cpp" />
+    <ClCompile Include="..\..\gamed\Circle.cpp" />
+    <ClCompile Include="..\..\gamed\Client.cpp" />
+    <ClCompile Include="..\..\gamed\DashCmdPacket.cpp" />
+    <ClCompile Include="..\..\gamed\DrawObject.cpp" />
+    <ClCompile Include="..\..\gamed\EmitParticlesPacket.cpp" />
+    <ClCompile Include="..\..\gamed\GameMap.cpp" />
+    <ClCompile Include="..\..\gamed\Hero.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\class.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\class_info.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\class_registry.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\class_rep.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\create_class.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\error.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\exception_handler.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\function.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\inheritance.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\link_compatibility.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\object_rep.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\open.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\pcall.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\scope.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\stack_content_by_name.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\weak_ref.cpp" />
+    <ClCompile Include="..\..\gamed\include\luabind\wrapper_base.cpp" />
+    <ClCompile Include="..\..\gamed\include\LUA\lapi.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lauxlib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lbaselib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lbitlib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lcode.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lcorolib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lctype.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldblib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldebug.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldo.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ldump.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lfunc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lgc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\linit.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\liolib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\llex.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lmathlib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lmem.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\loadlib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lobject.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lopcodes.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\loslib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lparser.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lstate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lstring.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lstrlib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ltable.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ltablib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\ltm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lua.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\luac.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lundump.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lvm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\include\LUA\lzio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\IniBin.cpp" />
     <ClCompile Include="..\..\gamed\Log.cpp" />
+    <ClCompile Include="..\..\gamed\LoLPacket.cpp" />
+    <ClCompile Include="..\..\gamed\LuaVM.cpp" />
+    <ClCompile Include="..\..\gamed\MissileSpawnPacket.cpp" />
     <ClCompile Include="..\..\gamed\NetworkListener.cpp" />
     <ClCompile Include="..\..\gamed\Handlers.cpp" />
+    <ClCompile Include="..\..\gamed\ObjectAttributes.cpp" />
+    <ClCompile Include="..\..\gamed\ObjectManager.cpp" />
     <ClCompile Include="..\..\gamed\PacketHandler.cpp" />
     <ClCompile Include="..\..\gamed\Packets.cpp" />
     <ClCompile Include="..\..\gamed\main.cpp" />
+    <ClCompile Include="..\..\gamed\Particle.cpp" />
+    <ClCompile Include="..\..\gamed\Renderer.cpp" />
+    <ClCompile Include="..\..\gamed\RafDB.cpp" />
+    <ClCompile Include="..\..\gamed\RiotArchiveFile.cpp" />
+    <ClCompile Include="..\..\gamed\RiotArchiveFileEntry.cpp" />
+    <ClCompile Include="..\..\gamed\RiotArchiveFileHandler.cpp" />
+    <ClCompile Include="..\..\gamed\RiotArchiveFileObject.cpp" />
+    <ClCompile Include="..\..\gamed\RpcBuffer.cpp" />
+    <ClCompile Include="..\..\gamed\ScoReader.cpp" />
+    <ClCompile Include="..\..\gamed\SendablePacket.cpp" />
+    <ClCompile Include="..\..\gamed\PacketBuffer.cpp" />
+    <ClCompile Include="..\..\gamed\Server.cpp" />
+    <ClCompile Include="..\..\gamed\SpellCmdPacket.cpp" />
+    <ClCompile Include="..\..\gamed\SummonersRift.cpp" />
+    <ClCompile Include="..\..\gamed\Tower.cpp" />
+    <ClCompile Include="..\..\gamed\Unit.cpp" />
+    <ClCompile Include="..\..\gamed\UpdateStatsPacket.cpp" />
+    <ClCompile Include="..\..\gamed\MovementReqPacket.cpp" />
+    <ClCompile Include="..\..\gamed\ReceivablePacket.cpp" />
+    <ClCompile Include="..\..\gamed\MovementAnsPacket.cpp" />
+    <ClCompile Include="..\..\gamed\vmath.cpp" />
+    <ClCompile Include="..\..\gamed\MapView.cpp" />
+    <ClCompile Include="..\..\gamed\Pathfinder.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="..\..\gamed\WaypointPacket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\gamed\AiPathReader.h" />
+    <ClInclude Include="..\..\gamed\CharacterDataStruct.h" />
     <ClInclude Include="..\..\gamed\ChatBox.h" />
+    <ClInclude Include="..\..\gamed\Circle.h" />
     <ClInclude Include="..\..\gamed\Client.h" />
+    <ClInclude Include="..\..\gamed\DashCmdPacket.h" />
+    <ClInclude Include="..\..\gamed\DrawObject.h" />
+    <ClInclude Include="..\..\gamed\EmitParticlesPacket.h" />
+    <ClInclude Include="..\..\gamed\GameMap.h" />
+    <ClInclude Include="..\..\gamed\Hero.h" />
+    <ClInclude Include="..\..\gamed\include\luabind\adopt_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\back_reference.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\back_reference_fwd.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\class.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\class_info.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\config.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\container_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\copy_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\dependency_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_0x.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_function.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_member.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\call_operator_iterate.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\class_registry.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\class_rep.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\constructor.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\conversion_storage.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\convert_to_lua.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\debug.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\decorate_type.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\deduce_signature.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\enum_maker.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\format_signature.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\garbage_collector.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\has_get_pointer.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\inheritance.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\instance_holder.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\link_compatibility.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\make_instance.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\most_derived.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\object_call.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\object_rep.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\open.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\operator_id.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\other.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\pcall.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\pointee_sizeof.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\pointee_typeid.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\primitives.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\property.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\ref.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\signature_match.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\stack_utils.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\typetraits.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\detail\yes_no.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\discard_result_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\error.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\exception_handler.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\from_stack.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\function.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\get_main_thread.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\get_pointer.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\handle.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\iterator_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\lua502.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\luabind.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\lua_include.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\make_function.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\nil.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\no_dependency.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\object.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\open.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\operator.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\out_value_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\prefix.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\raw_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\return_reference_to_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\scope.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\shared_ptr_converter.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\tag_function.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\typeid.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\value_wrapper.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\vector.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\version.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\weak_ref.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\wrapper_base.hpp" />
+    <ClInclude Include="..\..\gamed\include\luabind\yield_policy.hpp" />
+    <ClInclude Include="..\..\gamed\include\LUA\lapi.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lauxlib.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lcode.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lctype.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\ldebug.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\ldo.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lfunc.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lgc.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\llex.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\llimits.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lmem.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lobject.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lopcodes.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lparser.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lstate.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lstring.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\ltable.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\ltm.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lua.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lua.hpp" />
+    <ClInclude Include="..\..\gamed\include\LUA\luaconf.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lualib.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lundump.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lvm.h" />
+    <ClInclude Include="..\..\gamed\include\LUA\lzio.h" />
+    <ClInclude Include="..\..\gamed\IniBin.h" />
+    <ClInclude Include="..\..\gamed\LoLPacket.h" />
+    <ClInclude Include="..\..\gamed\LuaVM.h" />
+    <ClInclude Include="..\..\gamed\MissileSpawnPacket.h" />
     <ClInclude Include="..\..\gamed\NetworkListener.h" />
     <ClInclude Include="..\..\common.h" />
     <ClInclude Include="..\..\gamed\Log.h" />
+    <ClInclude Include="..\..\gamed\ObjectManager.h" />
     <ClInclude Include="..\..\gamed\PacketHandler.h" />
     <ClInclude Include="..\..\gamed\Packets.h" />
+    <ClInclude Include="..\..\gamed\Particle.h" />
+    <ClInclude Include="..\..\gamed\PS_Circle.h" />
+    <ClInclude Include="..\..\gamed\Renderer.h" />
+    <ClInclude Include="..\..\gamed\RafDB.h" />
+    <ClInclude Include="..\..\gamed\RiotArchiveFile.h" />
+    <ClInclude Include="..\..\gamed\RiotArchiveFileEntry.h" />
+    <ClInclude Include="..\..\gamed\RiotArchiveFileHandler.h" />
+    <ClInclude Include="..\..\gamed\RiotArchiveFileObject.h" />
+    <ClInclude Include="..\..\gamed\RpcBuffer.h" />
+    <ClInclude Include="..\..\gamed\ScoReader.h" />
+    <ClInclude Include="..\..\gamed\SendablePacket.h" />
+    <ClInclude Include="..\..\gamed\Server.h" />
+    <ClInclude Include="..\..\gamed\SpellCmdPacket.h" />
+    <ClInclude Include="..\..\gamed\SummonersRift.h" />
+    <ClInclude Include="..\..\gamed\Tower.h" />
+    <ClInclude Include="..\..\gamed\Unit.h" />
+    <ClInclude Include="..\..\gamed\vmath.h" />
+    <ClInclude Include="..\..\gamed\VS_WorldViewProj.h" />
     <ClInclude Include="..\..\stdafx.h" />
+    <ClInclude Include="..\..\gamed\PacketBuffer.h" />
+    <ClInclude Include="..\..\gamed\UpdateStatsPacket.h" />
+    <ClInclude Include="..\..\gamed\ObjectAttributes.h" />
+    <ClInclude Include="..\..\gamed\MovementReqPacket.h" />
+    <ClInclude Include="..\..\gamed\ReceivablePacket.h" />
+    <ClInclude Include="..\..\gamed\MovementAnsPacket.h" />
+    <ClInclude Include="..\..\gamed\MapView.h" />
+    <ClInclude Include="..\..\gamed\Pathfinder.h" />
+    <ClInclude Include="..\..\gamed\WaypointPacket.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="enet-1.2.5.vcxproj">
@@ -103,6 +422,32 @@
       <Project>{253d40b4-8b15-44d1-a718-c4035a31e5de}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\gamed\PS_Circle.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">3.0</ShaderModel>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).h</HeaderFileOutput>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PS_CIRCLE</VariableName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PixelShaderFunction</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PixelShaderFunction</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">3.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PS_CIRCLE</VariableName>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).h</HeaderFileOutput>
+    </FxCompile>
+    <FxCompile Include="..\..\gamed\VS_WorldViewProj.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">3.0</ShaderModel>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).h</HeaderFileOutput>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VS_WORLDVIEWPROJ</VariableName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">VertexShaderFunction</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VertexShaderFunction</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">3.0</ShaderModel>
+      <VariableName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">VS_WORLDVIEWPROJ</VariableName>
+      <HeaderFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).h</HeaderFileOutput>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

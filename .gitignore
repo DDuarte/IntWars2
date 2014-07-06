@@ -72,3 +72,6 @@ CMakeFiles
 CMakeCache.txt
 cmake_install.cmake
 *.lnk
+*.dat
+win/VC100/RAFCache.dat
+bin/gamed.exe.vmp

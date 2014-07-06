@@ -1,0 +1,344 @@
+<TalentTree>
+	<TalentGroup id="1" name="Offense">
+		<TalentRow id="1" pointsToActivate="0">
+			<Talent gameCode="4111" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>			
+			<Talent gameCode="4112" column="1">				
+				<MaxRank>4</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>			
+			<Talent gameCode="4113" column="2">				
+				<MaxRank>4</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>		
+			<Talent gameCode="4114" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="2" pointsToActivate="4">					
+			<Talent gameCode="4121" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4122" column="1">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4123" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4124" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4114</PrereqTalentGameCode>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="3" pointsToActivate="8">
+			<Talent gameCode="4131" column="0">		
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4132" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4122</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4133" column="2">
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4123</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4134" column="3">		
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>				
+		</TalentRow>
+		<TalentRow id="4" pointsToActivate="12">
+			<Talent gameCode="4141" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4131</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4142" column="1">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4143" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4144" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4134</PrereqTalentGameCode>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="5" pointsToActivate="16">
+			<Talent gameCode="4151" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4152" column="1">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4154" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="6" pointsToActivate="20">
+			<Talent gameCode="4162" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>		
+	    </TalentGroup>
+	<TalentGroup id="2" name="Defense">
+		<TalentRow id="7" pointsToActivate="0">
+			<Talent gameCode="4211" column="0">				
+				<MaxRank>2</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4212" column="1">				
+				<MaxRank>2</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4213" column="2">				
+				<MaxRank>2</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>			
+			</Talent>
+			<Talent gameCode="4214" column="3">				
+				<MaxRank>2</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="8" pointsToActivate="4">
+			<Talent gameCode="4221" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4211</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4222" column="1">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4224" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4214</PrereqTalentGameCode>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="9" pointsToActivate="8">
+			<Talent gameCode="4231" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4232" column="1">
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4222</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4233" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4234" column="3">
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="10" pointsToActivate="12">
+			<Talent gameCode="4241" column="0">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4242" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>			
+			<Talent gameCode="4243" column="2">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4233</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4244" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4234</PrereqTalentGameCode>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="11" pointsToActivate="16">
+			<Talent gameCode="4251" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4241</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4252" column="1">				
+				<MaxRank>4</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4253" column="2">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="12" pointsToActivate="20">
+			<Talent gameCode="4262" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+	</TalentGroup>
+	<TalentGroup id="3" name="Utility">
+		<TalentRow id="13" pointsToActivate="0">			
+			<Talent gameCode="4311" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4312" column="1">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>1
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4313" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4314" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>	
+		</TalentRow>
+		<TalentRow id="14" pointsToActivate="4">
+			<Talent gameCode="4322" column="1">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4323" column="2">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4313</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4324" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="15" pointsToActivate="8">
+			<Talent gameCode="4331" column="0">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4332" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4333" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4334" column="3">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4324</PrereqTalentGameCode>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="16" pointsToActivate="12">
+			<Talent gameCode="4341" column="0">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4331</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4342" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+			<Talent gameCode="4343" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>			
+			<Talent gameCode="4344" column="3">				
+				<MaxRank>2</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+		<TalentRow id="17" pointsToActivate="16">
+			<Talent gameCode="4352" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+				<PrereqTalentGameCode>4342</PrereqTalentGameCode>
+			</Talent>
+			<Talent gameCode="4353" column="2">				
+				<MaxRank>3</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>		
+		<TalentRow id="18" pointsToActivate="20">
+			<Talent gameCode="4362" column="1">				
+				<MaxRank>1</MaxRank>
+				<MinLevel>1</MinLevel>
+				<MinTier>1</MinTier>
+			</Talent>
+		</TalentRow>
+	</TalentGroup>
+</TalentTree>

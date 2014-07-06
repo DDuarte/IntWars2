@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gamed", "VC100\gamed.vcxproj", "{6F0516D6-EFA7-41FA-9068-B7CB911CBC48}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enet-1.2.5", "VC100\enet-1.2.5.vcxproj", "{AA18CE3F-30E5-49FF-971C-6715A70786A8}"

@@ -18,10 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _CHATBOX_H
 #define _CHATBOX_H
 #include "common.h"
-//this is where we'll filtre messages 
-enum ChatMessageType : uint32
-{
-	CMT_ALL = 0,
-	CMT_TEAM = 1,
+//this is where we'll filtre messages
+enum ChatMessageType : unsigned int {
+    CMT_ALL = 0,
+    CMT_TEAM = 1,
 };
 #endif

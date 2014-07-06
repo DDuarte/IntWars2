@@ -17,26 +17,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "stdafx.h"
 #include "NetworkListener.h"
+#include "ObjectManager.h"
 #include "Log.h"
 
-#define SERVER_HOST ENET_HOST_ANY 
+#define SERVER_HOST ENET_HOST_ANY
 #define SERVER_PORT 5119
 #define SERVER_KEY "17BLOhi6KZsTtldTsizvHg=="
 
 #define SERVER_VERSION "0.0.2"
 
-int main(int argc, char ** argv) 
-{
-	Logging->writeLine("IntWars %s\n",SERVER_VERSION);
-	NetworkListener *listener = new NetworkListener();
-	ENetAddress address;
-	address.host = SERVER_HOST;
-	address.port = SERVER_PORT;
-
-	listener->initialize(&address, SERVER_KEY);
-	Logging->writeLine("Starting net loop\n");
-	listener->netLoop();
-	delete listener;
-
-	Logging->writeLine("Goodbye\n");
+int main(int argc, char **argv) {
+    Logging->writeLine("IntWars %s\n", SERVER_VERSION);
+    listener = new NetworkListener();
+    ENetAddress address;
+    address.host = SERVER_HOST;
+    address.port = SERVER_PORT;
+    if(listener->initialize(&address, SERVER_KEY)) {
+        Logging->writeLine("Starting server loop\n");
+        listener->serverLoop();
+    } else {
+        Logging->writeLine("Failed to init.");
+    }
+    delete listener;
+    Logging->writeLine("Goodbye\n");
 }
