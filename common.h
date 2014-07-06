@@ -38,62 +38,65 @@ enum PacketCmd : unsigned char {
 
     PKT_C2S_SwapItemReq = 0x20, //1 //UPDATED
     PKT_S2C_FogUpdate2 = 0x23, //3 //UPDATED?
+    PKT_S2C_Masteries = 0x2A,
     PKT_S2C_ViewAns = 0x2B, //3  //UPDATED
     PKT_C2S_ViewReq = 0x2D, //1 //UPDATED
 
-    PKT_C2S_SkillUp = 0x38, //1 //UPDATED
+    PKT_C2S_SkillUp = 0x39, //1 //UPDATED 4.11
+    PKT_S2C_RangeAttack = 0x3A. // Update 4.11
     PKT_C2S_SwapItemAns = 0x3D, //1 //UPDATED
     PKT_S2C_AttentionPing = 0x3F, //3 //UPDATED
 
-    PKT_S2C_Emotion = 0x41, //3 UPDATED
-    PKT_C2S_Emotion = 0x47, //1 UPDATED
-    PKT_S2C_HeroSpawn = 0x4B, //3 UPDATED //PKT_S2C_CreateHero_s
-    PKT_S2C_Announce = 0x4C, //3
+    PKT_S2C_Emotion = 0x42, //3 UPDATED 4.11
+    PKT_C2S_Emotion = 0x48, //1 UPDATED 4.11
+    PKT_S2C_HeroSpawn = 0x4C, //3 UPDATED //PKT_S2C_CreateHero_s 4.11
+    PKT_S2C_Announce = 0x4D, //3 4.11
 
-    PKT_C2S_StartGame = 0x51, //1 //UPDATED
-    PKT_S2C_SynchVersion = 0x53, //3 //UPDATED
-    PKT_C2S_ScoreBord = 0x55, //1 //UPDATED
-    PKT_C2S_AttentionPing = 0x56, //1 //UPDATED
-    PKT_S2C_StartGame = 0x5B, //? //UPDATED
+    PKT_C2S_StartGame = 0x52, //1 //UPDATED 4.11
+    PKT_S2C_SynchVersion = 0x54, //3 //UPDATED 4.11
+    PKT_C2S_ScoreBord = 0x56, //1 //UPDATED 4.11
+    PKT_C2S_AttentionPing = 0x57, //1 //UPDATED 4.11
+    PKT_S2C_StartGame = 0x5C, //? //UPDATED 4.11
 
-    PKT_S2C_WaypointGroups = 0x60,
-    PKT_S2C_StartSpawn = 0x61, //? //UPDATED
+    PKT_S2C_WaypointGroups = 0x61, // Update 4.11
+    PKT_S2C_StartSpawn = 0x62, //? //UPDATED 4.11
     //PKT_C2S_OpenShop = 0x63, //1 - DEPRECATED
-    PKT_S2C_CreateNeutral = 0x62, //3 - UPDATED
+    PKT_S2C_CreateNeutral = 0x63, //3 - UPDATED 4.11
     PKT_C2S_ClientReady = 0x64, //6 //UPDATED ?
     PKT_S2C_LoadHero = 0x65, //6 //UPDATED
     PKT_S2C_LoadName = 0x66, //6 //UPDATED
     PKT_S2C_LoadScreenInfo = 0x67, //6 //UPDATED
     PKT_ChatBoxMessage = 0x68, //5 //UPDATED
-    PKT_S2C_BuyItemAns = 0x6E, //3 //UPDATED
+    PKT_S2C_BuyItemAns = 0x6F, //3 //UPDATED 4.11
 
-    PKT_C2S_MoveReq = 0x71, //1 //UPDATED
-    PKT_C2S_MoveConfirm = 0x76, //1 //UPDATED
+    PKT_C2S_MoveReq = 0x72, //1 //UPDATED 4.11
+    PKT_C2S_MoveConfirm = 0x77, //1 //UPDATED 4.11
 
-    PKT_C2S_LockCamera = 0x80, //1 //UPDATED
-    PKT_C2S_BuyItemReq = 0x81, //1 //UPDATED
-    PKT_S2C_QueryStatusAns = 0x87, //? //UPDATED
+    PKT_C2S_LockCamera = 0x81, //1 //UPDATED 4.11
+    PKT_C2S_BuyItemReq = 0x82, //1 //UPDATED 4.11
+    PKT_S2C_SpawnParticle = 0x87, // Updated 4.11
+    PKT_S2C_QueryStatusAns = 0x88, //? //UPDATED
     PKT_C2S_Exit = 0x8E, //1 //UPDATED
 
     PKT_World_SendGameNumber = 0x91, //3 //UPDATED
-    PKT_S2C_Ping_Load_Info = 0x94, //4 //UPDATED
-    PKT_C2S_CastSpell = 0x99, //1 //UPDATED
-    PKT_S2C_TurretSpawn = 0x9C, //3 UPDATED
+    PKT_S2C_Ping_Load_Info = 0x95, //4 //UPDATED 4.11
+    PKT_C2S_CastSpell = 0x9A, //1 //UPDATED 4.11
+    PKT_S2C_TurretSpawn = 0x9D, //3 UPDATED 4.11
 
-    PKT_C2S_Surrender = 0xA3, //1 //UPDATED
+    PKT_C2S_Surrender = 0xA4, //1 //UPDATED 4.11
     //PKT_C2S_GameNumberReq = 0xA6, //1 //DEPRECATED
-    PKT_C2S_StatsConfirm = 0xA7, //1 UPDATED
-    PKT_C2S_Click = 0xAE, //1 //UPDATED
-    PKT_S2C_AnimateSpell = 0xAF, // 1//UPDATED
+    PKT_C2S_StatsConfirm = 0xA8, //1 UPDATED 4.11
+    PKT_C2S_Click = 0xAF, //1 //UPDATED 4.11
+    PKT_S2C_AnimateSpell = 0xB0, // 1//UPDATED 4.11
 
-    PKT_S2C_Waypoints = 0xB9,
-    PKT_C2S_SynchVersion = 0xBC, //1 //UPDATED
-    PKT_C2S_CharLoaded = 0xBD, //1 //UPDATED
+    PKT_S2C_Waypoints = 0xBA, // Updated 4.11
+    PKT_C2S_SynchVersion = 0xBD, //1 //UPDATED 4.11
+    PKT_C2S_CharLoaded = 0xBE, //1 //UPDATED 4.11
 
-    PKT_S2C_GameTimer = 0xC0, //3 //UPDATED
-    PKT_S2C_GameTimerUpdate = 0xC1, //3 //UPDATED
-    PKT_S2C_CharStats = 0xC3, //4 //UPDATED
-    PKT_S2C_LevelPropSpawn = 0xCF, //3 UPDATED //PKT_SpawnLevelPropS2C_s
+    PKT_S2C_GameTimer = 0xC1, //3 //UPDATED 4.11
+    PKT_S2C_GameTimerUpdate = 0xC2, //3 //UPDATED 4.11
+    PKT_S2C_CharStats = 0xC4, //4 //UPDATED 4.11
+    PKT_S2C_LevelPropSpawn = 0xD0, //3 UPDATED //PKT_SpawnLevelPropS2C_s 4.11
 
     PKT_Batch = 0xFF, //3
 };

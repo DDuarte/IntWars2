@@ -9,7 +9,7 @@ EmitParticlesPacket::EmitParticlesPacket() : SendablePacket(CHL_S2C, 0) {
 }
 
 void EmitParticlesPacket::encode() {
-    this->write<unsigned char>(0x86);
+    this->write<unsigned char>(PKT_S2C_SpawnParticle);
     this->write<unsigned int>(0);				//netID
     this->write<BYTE>(vParticles.size());
     for(auto p : vParticles) {

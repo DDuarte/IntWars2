@@ -27,6 +27,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ChatBox.h"
 #include "Packets.h"
 
+
+#define SUMMONERS_RIFT 1
+#define NEW_SUMMONERS_RIFT 11
+
+
 bool PacketHandler::handleNull(HANDLE_ARGS) {
     return true;
 }
@@ -90,7 +95,7 @@ bool PacketHandler::handleGameNumber(ENetPeer *peer, ENetPacket *packet) {
 bool PacketHandler::handleSynch(ENetPeer *peer, ENetPacket *packet) {
     SynchVersion *version = reinterpret_cast<SynchVersion *>(packet->data);
     Logging->writeLine("Client version: %s\n", version->version);
-    SynchVersionAns answer(1, "Version 4.6.0.188 [PUBLIC]", "CLASSIC");
+    SynchVersionAns answer(SUMMONERS_RIFT, "Version 4.11.0.397 [PUBLIC]", "CLASSIC");
     int iIndex[2] = { 0, 6 };
     for(auto h : CObjectManager::GetPlayers()) {
         int i = h->tTeam == BLUE ? iIndex[0]++ : iIndex[1]++;
@@ -318,7 +323,7 @@ bool PacketHandler::handleSpawn(ENetPeer *peer, ENetPacket *packet) {
     //recall item slot
     BuyItemAns recall(p->GetNetworkID(), 2001, 7, 1);
     bool p4 = sendPacket(peer, reinterpret_cast<uint8 *>(&recall), sizeof(BuyItemAns), CHL_S2C); //activate recall slot
-    char _0x5B[6] = { 0x5B, 0, 0, 0, 0, 0 }; //0x5B now
+    char _0x5B[6] = { PKT_S2C_StartGame, 0, 0, 0, 0, 0 }; //0x5B now - START GAME
     sendPacket(peer, reinterpret_cast<uint8 *>(_0x5B), sizeof(_0x5B), CHL_S2C);
     //Only for my team
     bool bFirst = true;

@@ -7,7 +7,7 @@ SpellCmdPacket::SpellCmdPacket(unsigned int networkID, unsigned short wFlag, cha
                                float fChannelTime, float fDelay, float fVisible, float fCooldown, float fMana) : SendablePacket(CHL_S2C, 0) {
     this->netID = dwNetId1;
     this->clear();
-    this->write<unsigned char>(0xB4);
+    this->write<unsigned char>(0xB5);
     this->write<unsigned int>(networkID);				//netID
     this->write<unsigned int>(clock());
     this->write<unsigned char>(0);				//ok

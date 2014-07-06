@@ -8,7 +8,7 @@ MissileSpawnPacket::MissileSpawnPacket(CHero *hero, DWORD dwMissileHash, float f
     this->clear();
     auto obj1 = CObjectManager::NewObject();
     auto obj2 = CObjectManager::NewObject();
-    this->write<unsigned char>(0x3A);
+    this->write<unsigned char>(PKT_S2C_RangeAttack);
     this->write<unsigned int>(obj1->GetNetworkID());				//netID
     //spell start
     this->write<float>(hero->GetX());

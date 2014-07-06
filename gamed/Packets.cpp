@@ -239,7 +239,7 @@ _SkillUpResponse::_SkillUpResponse(DWORD netID) {
 
 SpellBook::SpellBook(DWORD netID) {
     ZeroMemory(this, sizeof(SpellBook));
-    header.cmd = PacketCmd(0xB6);
+    header.cmd = PacketCmd(0xB7); // TODO: Update static to common.h variables 
     header.netId = netID;
     fZ = 25000;//1;
     this->netID = netID;
@@ -326,7 +326,7 @@ TurretSpawn::TurretSpawn() {
 
 TurretSpawn2::TurretSpawn2(DWORD netID) {
     ZeroMemory(this, sizeof(TurretSpawn2));
-    header.cmd = PacketCmd(0xAD);
+    header.cmd = PacketCmd(0xAE);
     header.netId = netID;
     f1 = 1.0;
 }
@@ -346,7 +346,7 @@ SetupSpell2::SetupSpell2(DWORD netID, DWORD spellID) {
 
 SetupSpell1::SetupSpell1(DWORD netID, DWORD spellID) {
     ZeroMemory(this, sizeof(SetupSpell1));
-    header.cmd = PacketCmd(0x84);
+    header.cmd = PacketCmd(0x85);
     header.netId = netID;
     spellId = spellID;
     unk = 0;
@@ -364,7 +364,7 @@ SpawnHealthPoints::SpawnHealthPoints(DWORD netID, float health, float maxHealth)
 
 HeroSpawn4::HeroSpawn4(DWORD netId, float fX, float fY, BYTE spawnIndex, float fAngle) {
     ZeroMemory(this, sizeof(HeroSpawn4));
-    header.cmd = (PacketCmd)0xB9;
+    header.cmd = PKT_S2C_Waypoints;
     header.netId = netId;
     unk1 = 0x01;
     unk2 = 0x07;
@@ -383,7 +383,7 @@ HeroSpawn4::HeroSpawn4(DWORD netId, float fX, float fY, BYTE spawnIndex, float f
 
 HeroSpawn3::HeroSpawn3(DWORD netId, float fX, float fY, BYTE spawnIndex, float fAngle) {
     ZeroMemory(this, sizeof(HeroSpawn3));
-    header.cmd = (PacketCmd)0xB9;
+    header.cmd = PKT_S2C_Waypoints;
     header.netId = netId;
     fUnk1 = 1.0;
     bUnk1 = 3;
@@ -396,7 +396,7 @@ HeroSpawn3::HeroSpawn3(DWORD netId, float fX, float fY, BYTE spawnIndex, float f
 
 InitSpawn::InitSpawn(DWORD netID) {
     ZeroMemory(this, sizeof(InitSpawn));
-    header.cmd = (PacketCmd)0x29;
+    header.cmd = PKT_S2C_Masteries;
     header.netId = netID;
     /*for(int i = 0; i < 9; i++) { int1[i] = 5245; }
     for(int i = 0; i < 9; i++) { int2[i] = 5275; }
